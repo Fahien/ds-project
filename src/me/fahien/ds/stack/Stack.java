@@ -1,0 +1,11 @@
+package me.fahien.ds.stack;
+
+import me.fahien.ds.exception.EmptyStackException;
+
+public interface Stack<E> {
+	public int size ();
+	public boolean isEmpty ();
+	public E top () throws EmptyStackException;
+	public void push (E element);
+	public E pop() throws EmptyStackException;
+}
