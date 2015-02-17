@@ -1,6 +1,7 @@
 package me.fahien.ds.stack;
 
 import me.fahien.ds.exception.EmptyStackException;
+import me.fahien.ds.node.Node;
 
 public class NodeStack<E> implements Stack<E> {
 	protected Node<E> top;
@@ -48,10 +49,10 @@ public class NodeStack<E> implements Stack<E> {
 	@Override
 	public String toString () {
 		String string = "[";
-		if (size > 0 && top != null) {
-			string += top.getElement().toString();
+		if (!isEmpty()) {
+			string += top.getElement();
 			for (Node<E> node = top.getNext(); node != null; node = node.getNext()) {
-				string += ", " + node.getElement().toString();
+				string += ", " + node.getElement();
 			}
 		}
 		return string += "]";

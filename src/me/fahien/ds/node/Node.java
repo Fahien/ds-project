@@ -1,4 +1,4 @@
-package me.fahien.ds.stack;
+package me.fahien.ds.node;
 
 public class Node<E> {
 	private E element;

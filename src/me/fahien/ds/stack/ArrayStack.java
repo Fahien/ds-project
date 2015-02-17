@@ -3,7 +3,7 @@ package me.fahien.ds.stack;
 import me.fahien.ds.exception.EmptyStackException;
 
 public class ArrayStack<E> implements Stack<E> {
-	public static final int CAPACITY = 1000;
+	public static final int CAPACITY = 1024;
 
 	private int capacity;
 	private E stack[];
@@ -39,8 +39,9 @@ public class ArrayStack<E> implements Stack<E> {
 	@Override
 	public void push (E element) {
 		if (size() == stack.length) {
+			capacity *= 2;
 			@SuppressWarnings("unchecked")
-			E temp[] = (E[]) new Object[capacity * 2];
+			E temp[] = (E[]) new Object[capacity];
 			for (int i = 0; i < stack.length; i++) {
 				temp[i] = stack[i];
 			}
@@ -62,10 +63,10 @@ public class ArrayStack<E> implements Stack<E> {
 	@Override
 	public String toString () {
 		String string = "[";
-		if (stack.length > 0 && size() > 0) {
-			string += stack[0].toString();
+		if (!isEmpty()) {
+			string += stack[0];
 			for (int i = 1; i < stack.length && stack[i] != null && i < size(); i++) {
-				string += ", " + stack[i].toString();
+				string += ", " + stack[i];
 			}
 		}
 		return string += "]";
