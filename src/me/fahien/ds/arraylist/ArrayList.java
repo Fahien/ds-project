@@ -20,7 +20,7 @@ public class ArrayList<E> implements IndexList<E> {
 	}
 
 	@Override
-	public E remove(int index) throws IndexOutOfBoundsException {
+	public E remove (int index) throws IndexOutOfBoundsException {
 		if (index >= size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		E element = array[index];
@@ -33,7 +33,7 @@ public class ArrayList<E> implements IndexList<E> {
 	}
 
 	@Override
-	public void add(int index, E element) throws IndexOutOfBoundsException {
+	public void add (int index, E element) throws IndexOutOfBoundsException {
 		if (index > size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		if (size() == array.length) {
@@ -53,7 +53,7 @@ public class ArrayList<E> implements IndexList<E> {
 	}
 
 	@Override
-	public E set(int index, E element) throws IndexOutOfBoundsException {
+	public E set (int index, E element) throws IndexOutOfBoundsException {
 		if (index >= size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		E replace = array[index];
@@ -62,19 +62,19 @@ public class ArrayList<E> implements IndexList<E> {
 	}
 
 	@Override
-	public E get(int index) throws IndexOutOfBoundsException {
+	public E get (int index) throws IndexOutOfBoundsException {
 		if (index >= size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		return array[index];
 	}
 
 	@Override
-	public boolean isEmpty() {
+	public boolean isEmpty () {
 		return size() == 0;
 	}
 
 	@Override
-	public int size() {
+	public int size () {
 		return size;
 	}
 }

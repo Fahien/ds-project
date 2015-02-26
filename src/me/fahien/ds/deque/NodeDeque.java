@@ -1,15 +1,15 @@
 package me.fahien.ds.deque;
 
 import me.fahien.ds.exception.EmptyDequeException;
-import me.fahien.ds.node.DLNode;
+import me.fahien.ds.node.DNode;
 
 public class NodeDeque<E> implements Deque<E> {
-	private DLNode<E> header, trailer;
+	private DNode<E> header, trailer;
 	private int size;
 
 	public NodeDeque () {
-		header = new DLNode<E>();
-		trailer = new DLNode<E>();
+		header = new DNode<E>();
+		trailer = new DNode<E>();
 		header.setNext(trailer);
 		trailer.setPrev(header);
 	}
@@ -36,7 +36,7 @@ public class NodeDeque<E> implements Deque<E> {
 
 	@Override
 	public void addFirst (E element) {
-		DLNode<E> node = new DLNode<E>(element, header, header.getNext());
+		DNode<E> node = new DNode<E>(header, header.getNext(), element);
 		header.getNext().setPrev(node);
 		header.setNext(node);
 		size++;
@@ -44,7 +44,7 @@ public class NodeDeque<E> implements Deque<E> {
 
 	@Override
 	public void addLast (E element) {
-		DLNode<E> node = new DLNode<E>(element, trailer, trailer.getPrev());
+		DNode<E> node = new DNode<E>(trailer.getPrev(), trailer, element);
 		trailer.getPrev().setNext(node);
 		trailer.setPrev(node);
 		size++;
@@ -55,7 +55,7 @@ public class NodeDeque<E> implements Deque<E> {
 		if (isEmpty()) {
 			throw new EmptyDequeException("The deque is empty");
 		}
-		DLNode<E> node = header.getNext();
+		DNode<E> node = header.getNext();
 		header.setNext(node.getNext());
 		node.getNext().setPrev(header);
 		node.setNext(null);
@@ -69,7 +69,7 @@ public class NodeDeque<E> implements Deque<E> {
 		if (isEmpty()) {
 			throw new EmptyDequeException("The deque is empty");
 		}
-		DLNode<E> node = trailer.getPrev();
+		DNode<E> node = trailer.getPrev();
 		trailer.setPrev(node.getPrev());
 		node.getPrev().setNext(trailer);
 		node.setNext(null);
@@ -82,9 +82,9 @@ public class NodeDeque<E> implements Deque<E> {
 	public String toString () {
 		String string = "[";
 		if (!isEmpty()) {
-			DLNode<E> node = header.getNext();
+			DNode<E> node = header.getNext();
 			string += node.getElement();
-			for (node = node.getNext(); node.getElement() != null; node = node.getNext()) {
+			for (node = node.getNext(); node.getNext() != null; node = node.getNext()) {
 				string += ", " + node.getElement();
 			}
 		}
