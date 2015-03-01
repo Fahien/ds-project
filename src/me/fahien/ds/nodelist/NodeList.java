@@ -3,20 +3,20 @@ package me.fahien.ds.nodelist;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.node.DNode;
-import me.fahien.ds.node.Position;
+import me.fahien.ds.position.DNode;
+import me.fahien.ds.position.Position;
 
-public class NodePositionList<E> implements PositionList<E> {
+public class NodeList<E> implements PositionList<E> {
 	protected int size;
 	protected DNode<E> header, trailer;
 
-	public NodePositionList () {
+	public NodeList () {
 		header = new DNode<E>(null, null, null);
 		trailer = new DNode<E>(header, null, null);
 		header.setNext(trailer);
 	}
 
-	private DNode<E> checkPosition (Position<E> position) throws InvalidPositionException {
+	protected DNode<E> checkPosition (Position<E> position) throws InvalidPositionException {
 		if (position == null)
 			throw new InvalidPositionException("Position is null");
 		if (position == header)

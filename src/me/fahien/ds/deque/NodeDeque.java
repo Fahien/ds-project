@@ -1,7 +1,7 @@
 package me.fahien.ds.deque;
 
 import me.fahien.ds.exception.EmptyDequeException;
-import me.fahien.ds.node.DNode;
+import me.fahien.ds.position.DNode;
 
 public class NodeDeque<E> implements Deque<E> {
 	private DNode<E> header, trailer;

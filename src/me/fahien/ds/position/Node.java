@@ -1,6 +1,6 @@
-package me.fahien.ds.node;
+package me.fahien.ds.position;
 
-public class Node<E> {
+public class Node<E> implements Position<E> {
 	private E element;
 	private Node<E> next;
 
@@ -13,6 +13,7 @@ public class Node<E> {
 		this.next = next;
 	}
 
+	@Override
 	public E getElement () {
 		return element;
 	}

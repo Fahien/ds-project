@@ -5,9 +5,9 @@ import me.fahien.ds.exception.IndexOutOfBoundsException;
 public class ArrayList<E> implements IndexList<E> {
 	public static final int CAPACITY = 1024;
 
-	int capacity;
-	E array[];
-	int size;
+	protected int capacity;
+	protected E array[];
+	protected int size;
 
 	public ArrayList () {
 		this(CAPACITY);

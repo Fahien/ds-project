@@ -1,4 +1,4 @@
-package me.fahien.ds.node;
+package me.fahien.ds.position;
 
 import me.fahien.ds.exception.InvalidPositionException;
 

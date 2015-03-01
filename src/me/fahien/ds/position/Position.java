@@ -1,4 +1,4 @@
-package me.fahien.ds.node;
+package me.fahien.ds.position;
 
 public interface Position<E> {
 	/** Returns the element */
