@@ -1,7 +1,7 @@
 package me.fahien.ds.queue;
 
 import me.fahien.ds.exception.EmptyQueueException;
-import me.fahien.ds.position.Node;
+import me.fahien.ds.util.position.Node;
 
 public class NodeQueue<E> implements Queue<E> {
 	protected Node<E> head, tail;

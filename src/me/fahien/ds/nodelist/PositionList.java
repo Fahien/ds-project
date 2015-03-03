@@ -3,7 +3,7 @@ package me.fahien.ds.nodelist;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.position.Position;
+import me.fahien.ds.util.position.Position;
 
 public interface PositionList<E> {
 	/** Generic methods */

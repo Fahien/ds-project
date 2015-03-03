@@ -1,4 +1,4 @@
-package me.fahien.ds.position;
+package me.fahien.ds.util.position;
 
 public class Node<E> implements Position<E> {
 	private E element;

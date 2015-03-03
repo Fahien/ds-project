@@ -1,7 +1,7 @@
 package me.fahien.ds.stack;
 
 import me.fahien.ds.exception.EmptyStackException;
-import me.fahien.ds.position.Node;
+import me.fahien.ds.util.position.Node;
 
 public class NodeStack<E> implements Stack<E> {
 	protected Node<E> top;

@@ -3,8 +3,8 @@ package me.fahien.ds.nodelist;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.position.DNode;
-import me.fahien.ds.position.Position;
+import me.fahien.ds.util.position.DNode;
+import me.fahien.ds.util.position.Position;
 
 public class NodeList<E> implements PositionList<E> {
 	protected int size;

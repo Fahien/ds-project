@@ -5,8 +5,8 @@ import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.nodelist.NodeList;
-import me.fahien.ds.position.DNode;
-import me.fahien.ds.position.Position;
+import me.fahien.ds.util.position.DNode;
+import me.fahien.ds.util.position.Position;
 
 public class NodeSequence<E> extends NodeList<E> implements Sequence<E> {
 

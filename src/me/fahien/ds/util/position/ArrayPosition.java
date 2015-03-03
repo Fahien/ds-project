@@ -1,4 +1,4 @@
-package me.fahien.ds.position;
+package me.fahien.ds.util.position;
 
 public class ArrayPosition<E> implements Position<E> {
 	private int index;
