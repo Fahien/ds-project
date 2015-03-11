@@ -1,5 +1,7 @@
 package me.fahien.ds.sequence;
 
+import java.util.Iterator;
+
 import me.fahien.ds.arraylist.ArrayList;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
@@ -209,5 +211,11 @@ public class ArraySequence<E> implements Sequence<E> {
 		if (isEmpty())
 			throw new EmptySequenceException("The sequence is empty");
 		return remove(size() - 1);
+	}
+
+	@Override
+	public Iterator<E> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

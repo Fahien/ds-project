@@ -1,5 +1,7 @@
 package me.fahien.ds.nodelist;
 
+import java.util.Iterator;
+
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.InvalidPositionException;
@@ -151,5 +153,11 @@ public class NodeList<E> implements PositionList<E> {
 				right.setElement(temp);
 			}
 		}
+	}
+
+	@Override
+	public Iterator<E> iterator() {
+		// TODO
+		return null;
 	}
 }
