@@ -112,8 +112,7 @@ public class LinkedTree<E> implements Tree<E> {
 
 	@Override
 	public boolean isRoot(Position<E> position) throws InvalidPositionException {
-		TreePosition<E> node = checkPosition(position);
-		return node == root;
+		return checkPosition(position) == root;
 	}
 
 	public E removeRoot () throws EmptyTreeException, UndeletableNodeException {
