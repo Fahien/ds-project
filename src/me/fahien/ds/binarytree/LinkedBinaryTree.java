@@ -22,7 +22,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
 	protected BTPosition<E> checkPosition (Position<E> position) throws InvalidPositionException{
 		if (position == null)
-			throw new InvalidPositionException("Position is null");
+			throw new InvalidPositionException("The position is null");
 		try {
 			return (BTPosition<E>) position;
 		} catch (ClassCastException e) {
