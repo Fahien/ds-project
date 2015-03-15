@@ -7,7 +7,7 @@ import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.exception.NonEmptyTreeException;
 import me.fahien.ds.exception.UndeletableNodeException;
-import me.fahien.ds.nodelist.NodeList;
+import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.Position;
 import me.fahien.ds.util.position.TreeNode;
@@ -42,7 +42,7 @@ public class LinkedTree<E> implements Tree<E> {
 	public Iterator<E> iterator () {
 		// Iterable collection of nodes
 		Iterable<Position<E>> positions = getPositions();
-		PositionList<E> positionList = new NodeList<E>();
+		PositionList<E> positionList = new NodePositionList<E>();
 		for (Position<E> position : positions) {
 			positionList.addLast(position.getElement());
 		}
@@ -62,7 +62,7 @@ public class LinkedTree<E> implements Tree<E> {
 
 	@Override
 	public Iterable<Position<E>> getPositions () {
-		PositionList<Position<E>> positions = new NodeList<Position<E>>();
+		PositionList<Position<E>> positions = new NodePositionList<Position<E>>();
 		if (size != 0)
 			preorderPositions(root, positions);
 		return positions;
@@ -92,7 +92,7 @@ public class LinkedTree<E> implements Tree<E> {
 
 	@Override
 	public Iterable<Position<E>> childrenOf (Position<E> position) throws InvalidPositionException {
-		PositionList<Position<E>> positionList = new NodeList<Position<E>>();
+		PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
 		if (size != 0)
 			preorderPositions(position, positionList);
 		return positionList;

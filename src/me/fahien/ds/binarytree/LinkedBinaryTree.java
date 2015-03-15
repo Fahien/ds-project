@@ -6,7 +6,7 @@ import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.exception.NonEmptyTreeException;
-import me.fahien.ds.nodelist.NodeList;
+import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.BTNode;
 import me.fahien.ds.util.position.BTPosition;
@@ -50,7 +50,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
 	@Override
 	public Iterable<Position<E>> getPositions () {
-		PositionList<Position<E>> positions = new NodeList<Position<E>>();
+		PositionList<Position<E>> positions = new NodePositionList<Position<E>>();
 		if (size != 0)
 			try {
 				preorderPositions(getRoot(), positions);
@@ -82,7 +82,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
 	@Override
 	public Iterable<Position<E>> childrenOf (Position<E> position) throws InvalidPositionException {
-		PositionList<Position<E>> positionList = new NodeList<Position<E>>();
+		PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
 		if (size != 0)
 			preorderPositions(position, positionList);
 		return positionList;
@@ -107,7 +107,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
 	@Override
 	public Iterator<E> iterator () {
-		PositionList<E> elements = new NodeList<E> ();
+		PositionList<E> elements = new NodePositionList<E> ();
 		for (Position<E> position : getPositions())
 			elements.addLast(position.getElement());
 		return elements.iterator();

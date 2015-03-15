@@ -8,11 +8,11 @@ import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.util.position.DNode;
 import me.fahien.ds.util.position.Position;
 
-public class NodeList<E> implements PositionList<E> {
+public class NodePositionList<E> implements PositionList<E> {
 	protected int size;
 	protected DNode<E> header, trailer;
 
-	public NodeList () {
+	public NodePositionList () {
 		header = new DNode<E>(null, null, null);
 		trailer = new DNode<E>(header, null, null);
 		header.setNext(trailer);
@@ -156,7 +156,7 @@ public class NodeList<E> implements PositionList<E> {
 	}
 
 	@Override
-	public Iterator<E> iterator() {
+	public Iterator<E> iterator () {
 		// TODO
 		return null;
 	}

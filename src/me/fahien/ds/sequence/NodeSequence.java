@@ -4,11 +4,11 @@ import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.nodelist.NodeList;
+import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.util.position.DNode;
 import me.fahien.ds.util.position.Position;
 
-public class NodeSequence<E> extends NodeList<E> implements Sequence<E> {
+public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> {
 
 	protected void checkIndex (int index) throws IndexOutOfBoundsException {
 		if (index < 0 || index >= size)

@@ -4,24 +4,24 @@ import java.util.Comparator;
 
 import me.fahien.ds.exception.EmptyPriorityQueueException;
 import me.fahien.ds.exception.InvalidKeyException;
-import me.fahien.ds.nodelist.NodeList;
+import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.comparator.DefaultComparator;
+import me.fahien.ds.util.composition.IEntry;
 import me.fahien.ds.util.composition.Entry;
-import me.fahien.ds.util.composition.MyEntry;
 import me.fahien.ds.util.position.Position;
 
 public class SortedListPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> {
-	private PositionList<Entry<Key, Value>> entries;
-	private Comparator<Key> comparator;
+	protected PositionList<IEntry<Key, Value>> list;
+	protected Comparator<Key> comparator;
 
 	public SortedListPriorityQueue () {
-		entries = new NodeList<Entry<Key, Value>>();
+		list = new NodePositionList<IEntry<Key, Value>>();
 		comparator = new DefaultComparator<Key>();
 	}
 
 	public SortedListPriorityQueue (Comparator<Key> comparator) {
-		entries = new NodeList<Entry<Key, Value>>();
+		list = new NodePositionList<IEntry<Key, Value>>();
 		this.comparator = comparator;
 	}
 
@@ -35,50 +35,53 @@ public class SortedListPriorityQueue<Key, Value> implements PriorityQueue<Key, V
 
 	@Override
 	public int size () {
-		return entries.size();
+		return list.size();
 	}
 
 	@Override
 	public boolean isEmpty () {
-		return entries.isEmpty();
+		return list.isEmpty();
 	}
 
 	@Override
-	public Entry<Key, Value> min () throws EmptyPriorityQueueException {
-		if (entries.isEmpty()) {
+	public IEntry<Key, Value> min () throws EmptyPriorityQueueException {
+		if (list.isEmpty()) {
 			throw new EmptyPriorityQueueException ("The priority queue is empty");
 		}
-		return entries.first().getElement();
+		return list.first().getElement();
 	}
 
 	@Override
-	public Entry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
+	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		Entry<Key, Value> entry = new MyEntry<Key, Value>(key, value);
+		IEntry<Key, Value> entry = new Entry<Key, Value>(key, value);
 		insertEntry(entry);
 		return entry;
 	}
 
-	protected void insertEntry (Entry<Key, Value> entry) {
-		if(entries.isEmpty()) {
-			entries.addFirst(entry);
+	protected Position<IEntry<Key, Value>> insertEntry (IEntry<Key, Value> entry) {
+		if(list.isEmpty()) {
+			list.addFirst(entry);
+			return list.first();
 		}
-		else if (comparator.compare(entry.getKey(), entries.last().getElement().getKey()) > 0) {
-			entries.addLast(entry);
+		else if (comparator.compare(entry.getKey(), list.last().getElement().getKey()) > 0) {
+			list.addLast(entry);
+			return list.last();
 		}
 		else {
-			Position<Entry<Key, Value>> position = entries.first();
+			Position<IEntry<Key, Value>> position = list.first();
 			while (comparator.compare(entry.getKey(), position.getElement().getKey()) > 0) {
-				position = entries.next(position);
+				position = list.next(position);
 			}
-			entries.addBefore(position, entry);
+			list.addBefore(position, entry);
+			return position;
 		}
 	}
 
 	@Override
-	public Entry<Key, Value> removeMin () throws EmptyPriorityQueueException {
-		if (entries.isEmpty())
+	public IEntry<Key, Value> removeMin () throws EmptyPriorityQueueException {
+		if (list.isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
-		return entries.remove(entries.first());
+		return list.remove(list.first());
 	}
 }

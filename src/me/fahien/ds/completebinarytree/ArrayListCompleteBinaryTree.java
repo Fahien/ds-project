@@ -6,7 +6,7 @@ import me.fahien.ds.arraylist.IndexList;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.nodelist.NodeList;
+import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.BTIndexedPosition;
 import me.fahien.ds.util.position.Position;
@@ -71,7 +71,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 
 	@Override
 	public Iterable<Position<E>> getPositions () {
-		PositionList<Position<E>> positionList = new NodeList<Position<E>>();
+		PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
 		for (int i = 1; i < tree.size(); i++) {
 			positionList.addLast(tree.get(i));
 		}
@@ -104,7 +104,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 
 	@Override
 	public Iterable<Position<E>> childrenOf (Position<E> position) throws InvalidPositionException {
-		PositionList<Position<E>> positionList = new NodeList<Position<E>>();
+		PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
 		if (size() != 0)
 			preorderPositions(position, positionList);
 		return positionList;
@@ -127,7 +127,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 
 	@Override
 	public Iterator<E> iterator () {
-		PositionList<E> positionList = new NodeList<E>();
+		PositionList<E> positionList = new NodePositionList<E>();
 		for (int i = 1; i < tree.size(); i++) {
 			positionList.addLast(tree.get(i).getElement());
 		}
