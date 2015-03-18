@@ -5,6 +5,7 @@ import java.util.Iterator;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.InvalidPositionException;
+import me.fahien.ds.iterator.ElementIterator;
 import me.fahien.ds.util.position.DNode;
 import me.fahien.ds.util.position.Position;
 
@@ -157,7 +158,20 @@ public class NodePositionList<E> implements PositionList<E> {
 
 	@Override
 	public Iterator<E> iterator () {
-		// TODO
-		return null;
+		return new ElementIterator<E>(this);
+	}
+
+	@Override
+	public Iterable<Position<E>> getPositions() {
+		PositionList<Position<E>> list = new NodePositionList<Position<E>>();
+		if(!isEmpty()) {
+			Position<E> position = first();
+			for (int i = 0; i < size - 1; i++) {
+				list.addLast(position);
+				position = next(position);
+			}
+			list.addLast(last());
+		}
+		return list;
 	}
 }

@@ -21,4 +21,5 @@ public interface PositionList<E> extends Iterable<E> {
 	public Position<E> last () throws EmptyListException;
 	public Position<E> prev (Position<E> position) throws InvalidPositionException, BoundaryViolationException;
 	public Position<E> next (Position<E> position) throws InvalidPositionException, BoundaryViolationException;
+	public Iterable<Position<E>> getPositions();
 }

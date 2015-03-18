@@ -9,6 +9,9 @@ import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.FullSequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
+import me.fahien.ds.iterator.ElementIterator;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.ArrayPosition;
 import me.fahien.ds.util.position.Position;
 
@@ -215,7 +218,15 @@ public class ArraySequence<E> implements Sequence<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ElementIterator<E>(this);
+	}
+
+	@Override
+	public Iterable<Position<E>> getPositions() {
+		PositionList<Position<E>> list = new NodePositionList<Position<E>>();
+		for (int i = 0; i < array.size() - 1; i++) {
+			list.addLast(array.get(i));
+		}
+		return list;
 	}
 }
