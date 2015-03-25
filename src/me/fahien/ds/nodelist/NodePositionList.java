@@ -162,7 +162,7 @@ public class NodePositionList<E> implements PositionList<E> {
 	}
 
 	@Override
-	public Iterable<Position<E>> getPositions() {
+	public Iterable<Position<E>> getPositions () {
 		PositionList<Position<E>> list = new NodePositionList<Position<E>>();
 		if(!isEmpty()) {
 			Position<E> position = first();

@@ -217,12 +217,12 @@ public class ArraySequence<E> implements Sequence<E> {
 	}
 
 	@Override
-	public Iterator<E> iterator() {
+	public Iterator<E> iterator () {
 		return new ElementIterator<E>(this);
 	}
 
 	@Override
-	public Iterable<Position<E>> getPositions() {
+	public Iterable<Position<E>> getPositions () {
 		PositionList<Position<E>> list = new NodePositionList<Position<E>>();
 		for (int i = 0; i < array.size() - 1; i++) {
 			list.addLast(array.get(i));

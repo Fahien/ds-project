@@ -14,7 +14,7 @@ public interface PositionList<E> extends Iterable<E> {
 	public Position<E> addAfter (Position<E> position, E element) throws InvalidPositionException;
 	public void addFirst (E element);
 	public void addLast (E element);
-	public E remove (Position<E> child) throws InvalidPositionException;
+	public E remove (Position<E> position) throws InvalidPositionException;
 	public E set (Position<E> position, E element) throws InvalidPositionException;
 	/** Access methods */
 	public Position<E> first () throws EmptyListException;

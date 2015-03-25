@@ -46,9 +46,9 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 	@Override
 	public Value get (Key key) throws InvalidKeyException {
 		checkKey(key);
-		for (Position<IEntry<Key, Value>> position : list.getPositions()) {
-			IEntry<Key, Value> entry = position.getElement();
-			if (entry.getKey().equals(key)) return entry.getValue();
+		for (IEntry<Key, Value> entry : list) {
+			if (entry.getKey().equals(key))
+				return entry.getValue();
 		}
 		return null;
 	}
