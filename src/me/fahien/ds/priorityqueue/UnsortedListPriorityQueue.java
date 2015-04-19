@@ -15,17 +15,17 @@ public class UnsortedListPriorityQueue<Key, Value> implements PriorityQueue<Key,
 	protected PositionList<IEntry<Key, Value>> entries;
 	protected Comparator<Key> comparator;
 
-	public UnsortedListPriorityQueue () {
-		entries = new NodePositionList<IEntry<Key, Value>>();
-		comparator = new DefaultComparator<Key>();
+	public UnsortedListPriorityQueue() {
+		entries = new NodePositionList<>();
+		comparator = new DefaultComparator<>();
 	}
 
-	public UnsortedListPriorityQueue (Comparator<Key> comparator) {
-		entries = new NodePositionList<IEntry<Key, Value>>();
+	public UnsortedListPriorityQueue(Comparator<Key> comparator) {
+		entries = new NodePositionList<>();
 		this.comparator = comparator;
 	}
 
-	protected boolean checkKey (Key key) {
+	protected boolean checkKey(Key key) {
 		try {
 			return comparator.compare(key, key) == 0;
 		} catch (ClassCastException e) {
@@ -33,38 +33,33 @@ public class UnsortedListPriorityQueue<Key, Value> implements PriorityQueue<Key,
 		}
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return entries.size();
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return entries.isEmpty();
 	}
 
-	@Override
-	public IEntry<Key, Value> min () throws EmptyPriorityQueueException {
+	@Override public IEntry<Key, Value> min() throws EmptyPriorityQueueException {
 		if (entries.isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		return null;
 	}
 
-	@Override
-	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
+	@Override public IEntry<Key, Value> insert(Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		IEntry<Key, Value> entry = new Entry<Key, Value>(key, value);
+		IEntry<Key, Value> entry = new Entry<>(key, value);
 		entries.addLast(entry);
 		return entry;
 	}
 
-	@Override
-	public IEntry<Key, Value> removeMin () throws EmptyPriorityQueueException {
+	@Override public IEntry<Key, Value> removeMin() throws EmptyPriorityQueueException {
 		if (entries.isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		Position<IEntry<Key, Value>> position = entries.first();
 		Position<IEntry<Key, Value>> next = entries.next(position);
-		while (comparator.compare(position.getElement().getKey(), next.getElement().getKey()) > 0 && next != null) {
+		while (next != null && comparator.compare(position.getElement().getKey(), next.getElement().getKey()) > 0) {
 			position = next;
 			next = entries.next(next);
 		}

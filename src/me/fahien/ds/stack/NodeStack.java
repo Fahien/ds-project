@@ -7,37 +7,31 @@ public class NodeStack<E> implements Stack<E> {
 	protected Node<E> top;
 	protected int size;
 
-	public NodeStack () {
+	public NodeStack() {
 		top = null;
 		size = 0;
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return size;
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return top == null && size == 0;
 	}
 
-	@Override
-	public E top () throws EmptyStackException {
+	@Override public E top() throws EmptyStackException {
 		if (isEmpty())
 			throw new EmptyStackException("The stack is empty");
 		return top.getElement();
 	}
 
-	@Override
-	public void push (E element) {
-		Node<E> node = new Node<E>(element, top);
-		top = node;
+	@Override public void push(E element) {
+		top = new Node<>(element, top);
 		size++;
 	}
 
-	@Override
-	public E pop () throws EmptyStackException {
+	@Override public E pop() throws EmptyStackException {
 		if (isEmpty())
 			throw new EmptyStackException("The stack is empty");
 		E temp = top.getElement();
@@ -46,8 +40,7 @@ public class NodeStack<E> implements Stack<E> {
 		return temp;
 	}
 
-	@Override
-	public String toString () {
+	@Override public String toString() {
 		String string = "[";
 		if (!isEmpty()) {
 			string += top.getElement();

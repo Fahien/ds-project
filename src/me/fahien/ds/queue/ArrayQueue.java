@@ -3,41 +3,37 @@ package me.fahien.ds.queue;
 import me.fahien.ds.exception.EmptyQueueException;
 
 public class ArrayQueue<E> implements Queue<E> {
-	public static final int CAPACITY = 1024;
+	private static final int CAPACITY = 1024;
 
 	private int capacity;
 	private E queue[];
 	private int front, rear;
 
-	public ArrayQueue () {
+	public ArrayQueue() {
 		this(CAPACITY);
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayQueue (int capacity) {
+	public ArrayQueue(int capacity) {
 		this.capacity = capacity;
 		queue = (E[]) new Object[capacity];
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return (capacity - front + rear) % capacity;
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return front == rear;
 	}
 
-	@Override
-	public E front () throws EmptyQueueException {
+	@Override public E front() throws EmptyQueueException {
 		if (isEmpty())
 			throw new EmptyQueueException("The queue is empty");
 		return queue[front];
 	}
 
-	@Override
-	public void enqueue (E element) {
+	@Override public void enqueue(E element) {
 		if (size() == capacity - 1) {
 			@SuppressWarnings("unchecked")
 			E temp[] = (E[]) new Object[capacity * 2];
@@ -61,16 +57,14 @@ public class ArrayQueue<E> implements Queue<E> {
 		rear = ++rear % capacity;
 	}
 
-	@Override
-	public E dequeue () throws EmptyQueueException {
+	@Override public E dequeue() throws EmptyQueueException {
 		if (isEmpty())
 			throw new EmptyQueueException("The queue is empty");
 		front = ++front % capacity;
 		return queue[front - 1];
 	}
 
-	@Override
-	public String toString () {
+	@Override public String toString() {
 		String string = "[";
 		if (!isEmpty()) {
 			string += queue[front];

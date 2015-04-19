@@ -16,12 +16,12 @@ public class SortedListPriorityQueue<Key, Value> implements PriorityQueue<Key, V
 	protected Comparator<Key> comparator;
 
 	public SortedListPriorityQueue () {
-		list = new NodePositionList<IEntry<Key, Value>>();
-		comparator = new DefaultComparator<Key>();
+		list = new NodePositionList<>();
+		comparator = new DefaultComparator<>();
 	}
 
 	public SortedListPriorityQueue (Comparator<Key> comparator) {
-		list = new NodePositionList<IEntry<Key, Value>>();
+		list = new NodePositionList<>();
 		this.comparator = comparator;
 	}
 
@@ -54,7 +54,7 @@ public class SortedListPriorityQueue<Key, Value> implements PriorityQueue<Key, V
 	@Override
 	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		IEntry<Key, Value> entry = new Entry<Key, Value>(key, value);
+		IEntry<Key, Value> entry = new Entry<>(key, value);
 		insertEntry(entry);
 		return entry;
 	}

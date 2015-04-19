@@ -11,11 +11,11 @@ import me.fahien.ds.util.position.Position;
 
 public class SortedListAdaptablePriorityQueue<Key, Value> extends SortedListPriorityQueue<Key, Value> implements AdaptablePriorityQueue<Key, Value> {
 
-	public SortedListAdaptablePriorityQueue () {
+	public SortedListAdaptablePriorityQueue() {
 		super();
 	}
 
-	public SortedListAdaptablePriorityQueue (Comparator<Key> comparator) {
+	public SortedListAdaptablePriorityQueue(Comparator<Key> comparator) {
 		super(comparator);
 	}
 
@@ -25,24 +25,21 @@ public class SortedListAdaptablePriorityQueue<Key, Value> extends SortedListPrio
 		return (LocationAwareEntry<Key, Value>) entry;
 	}
 
-	@Override
-	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
+	@Override public IEntry<Key, Value> insert(Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		LocationAwareEntry<Key, Value> entry = new LocationAwareEntry<Key, Value>(key, value);
+		LocationAwareEntry<Key, Value> entry = new LocationAwareEntry<>(key, value);
 		Position<IEntry<Key, Value>> location = insertEntry(entry);
 		entry.setLocation(location);
 		return entry;
 	}
 
-	@Override
-	public IEntry<Key, Value> remove(IEntry<Key, Value> entry) throws InvalidEntryException {
+	@Override public IEntry<Key, Value> remove(IEntry<Key, Value> entry) throws InvalidEntryException {
 		LocationAwareEntry<Key, Value> locationAwareEntry = checkEntry(entry);
 		Position<IEntry<Key, Value>> position = locationAwareEntry.getLocation();
-		return (IEntry<Key, Value>) list.remove(position);
+		return list.remove(position);
 	}
 
-	@Override
-	public Key replaceKey(IEntry<Key, Value> entry, Key key) throws InvalidEntryException {
+	@Override public Key replaceKey(IEntry<Key, Value> entry, Key key) throws InvalidEntryException {
 		checkKey(key);
 		remove(checkEntry(entry));
 		Key temp = entry.getKey();
@@ -51,8 +48,7 @@ public class SortedListAdaptablePriorityQueue<Key, Value> extends SortedListPrio
 		return temp;
 	}
 
-	@Override
-	public Value replaceValue (IEntry<Key, Value> entry, Value value) throws InvalidEntryException {
+	@Override public Value replaceValue(IEntry<Key, Value> entry, Value value) throws InvalidEntryException {
 		LocationAwareEntry<Key, Value> locationAwareEntry = checkEntry(entry);
 		Value temp = locationAwareEntry.getValue();
 		locationAwareEntry.setValue(value);

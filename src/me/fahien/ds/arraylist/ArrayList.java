@@ -9,18 +9,17 @@ public class ArrayList<E> implements IndexList<E> {
 	protected E array[];
 	protected int size;
 
-	public ArrayList () {
+	public ArrayList() {
 		this(CAPACITY);
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList (int capacity) {
+	public ArrayList(int capacity) {
 		this.capacity = capacity;
 		array = (E[]) new Object[capacity];
 	}
 
-	@Override
-	public E remove (int index) throws IndexOutOfBoundsException {
+	@Override public E remove(int index) throws IndexOutOfBoundsException {
 		if (index >= size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		E element = array[index];
@@ -32,8 +31,7 @@ public class ArrayList<E> implements IndexList<E> {
 		return element;
 	}
 
-	@Override
-	public void add (int index, E element) throws IndexOutOfBoundsException {
+	@Override public void add(int index, E element) throws IndexOutOfBoundsException {
 		if (index > size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		if (size() == array.length) {
@@ -52,8 +50,7 @@ public class ArrayList<E> implements IndexList<E> {
 		size++;
 	}
 
-	@Override
-	public E set (int index, E element) throws IndexOutOfBoundsException {
+	@Override public E set(int index, E element) throws IndexOutOfBoundsException {
 		if (index >= size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		E replace = array[index];
@@ -61,20 +58,17 @@ public class ArrayList<E> implements IndexList<E> {
 		return replace;
 	}
 
-	@Override
-	public E get (int index) throws IndexOutOfBoundsException {
+	@Override public E get(int index) throws IndexOutOfBoundsException {
 		if (index >= size())
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		return array[index];
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return size() == 0;
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return size;
 	}
 }

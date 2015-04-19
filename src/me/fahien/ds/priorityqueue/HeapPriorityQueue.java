@@ -16,27 +16,27 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 	protected CompleteBinaryTree<IEntry<Key, Value>> heap;
 	protected Comparator<Key> comparator;
 
-	public HeapPriorityQueue () {
-		heap = new ArrayListCompleteBinaryTree<IEntry<Key, Value>>();
-		comparator = new DefaultComparator<Key>();
+	public HeapPriorityQueue() {
+		heap = new ArrayListCompleteBinaryTree<>();
+		comparator = new DefaultComparator<>();
 	}
 
-	public HeapPriorityQueue (Comparator<Key> comparator) {
-		heap = new ArrayListCompleteBinaryTree<IEntry<Key, Value>>();
+	public HeapPriorityQueue(Comparator<Key> comparator) {
+		heap = new ArrayListCompleteBinaryTree<>();
 		this.comparator = comparator;
 	}
 
-	public HeapPriorityQueue (Key keys[], Value values[], Comparator<Key> comparator) {
-		heap = new ArrayListCompleteBinaryTree<IEntry<Key, Value>>();
+	public HeapPriorityQueue(Key keys[], Value values[], Comparator<Key> comparator) {
+		heap = new ArrayListCompleteBinaryTree<>();
 		this.comparator = comparator;
 		for (int i = 0; i < keys.length || i < values.length; i++) {
 			checkKey(keys[i]);
-			IEntry<Key, Value> entry = new Entry<Key, Value>(keys[i], values[i]);
+			IEntry<Key, Value> entry = new Entry<>(keys[i], values[i]);
 			upHeap(heap.add(entry));
 		}
 	}
 
-	protected void checkKey (Key key) throws InvalidKeyException {
+	protected void checkKey(Key key) throws InvalidKeyException {
 		try {
 			comparator.compare(key, key);
 		} catch (Exception e) {
@@ -44,7 +44,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	protected void downHeap (Position<IEntry<Key, Value>> root) {
+	protected void downHeap(Position<IEntry<Key, Value>> root) {
 		while(heap.isInternal(root)) {
 			Position<IEntry<Key, Value>> smallestChild;
 			if(!heap.hasRight(root)) {
@@ -73,26 +73,23 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	protected void swap (Position<IEntry<Key, Value>> positionX, Position<IEntry<Key, Value>> positionY) {
+	protected void swap(Position<IEntry<Key, Value>> positionX, Position<IEntry<Key, Value>> positionY) {
 		IEntry<Key, Value> temp = positionX.getElement();
 		heap.replace(positionX, positionY.getElement());
 		heap.replace(positionY, temp);
 	}
 
-	@Override
-	/** @return The size of the heap */
-	public int size () {
+	/** Returns the size of the heap */
+	@Override public int size() {
 		return heap.size();
 	}
 
-	@Override
-	/** @return Wheter the heap is empty */
-	public boolean isEmpty () {
+	/** Returns whether the heap is empty */
+	@Override public boolean isEmpty() {
 		return heap.size() == 0;
 	}
 
-	@Override
-	public IEntry<Key, Value> min () throws EmptyPriorityQueueException {
+	@Override public IEntry<Key, Value> min() throws EmptyPriorityQueueException {
 		if (isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		try {
@@ -102,16 +99,14 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	@Override
-	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
+	@Override public IEntry<Key, Value> insert(Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		IEntry<Key, Value> entry = new Entry<Key, Value>(key, value);
+		IEntry<Key, Value> entry = new Entry<>(key, value);
 		upHeap(heap.add(entry));
 		return entry;
 	}
 
-	@Override
-	public IEntry<Key, Value> removeMin () throws EmptyPriorityQueueException {
+	@Override public IEntry<Key, Value> removeMin() throws EmptyPriorityQueueException {
 		if (isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		IEntry<Key, Value> min;

@@ -16,7 +16,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	private int size;
 	private BTPosition<E> root;
 
-	public LinkedBinaryTree () {
+	public LinkedBinaryTree() {
 		size = 0;
 	}
 
@@ -30,7 +30,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		}
 	}
 
-	protected void preorderPositions (Position<E> position, PositionList<Position<E>> positionList) throws InvalidPositionException {
+	protected void preorderPositions(Position<E> position, PositionList<Position<E>> positionList) throws InvalidPositionException {
 		positionList.addLast(position);
 		if (hasLeft(position))
 			preorderPositions(getLeft(position), positionList);
@@ -38,51 +38,46 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 			preorderPositions(getRight(position), positionList);
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return size;
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return size == 0;
 	}
 
-	@Override
-	public Iterable<Position<E>> getPositions () {
-		PositionList<Position<E>> positions = new NodePositionList<Position<E>>();
+	@Override public Iterable<Position<E>> getPositions() {
+		PositionList<Position<E>> positions = new NodePositionList<>();
 		if (size != 0)
 			try {
 				preorderPositions(getRoot(), positions);
-			} catch (InvalidPositionException | EmptyTreeException e) { }
+			} catch (InvalidPositionException | EmptyTreeException e) {
+				e.printStackTrace();
+			}
 		return positions;
 	}
 
-	@Override
-	public E replace (Position<E> position, E element) throws InvalidPositionException {
+	@Override public E replace(Position<E> position, E element) throws InvalidPositionException {
 		BTPosition<E> node = checkPosition(position);
 		E temp = node.getElement();
 		node.setElement(element);
 		return temp;
 	}
 
-	@Override
-	public Position<E> getRoot () throws EmptyTreeException {
+	@Override public Position<E> getRoot() throws EmptyTreeException {
 		if (size == 0 && root == null)
 			throw new EmptyTreeException("The binary tree is empty");
 		return root;
 	}
 
-	@Override
-	public Position<E> parentOf (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> parentOf(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		if (position == root)
 			throw new BoundaryViolationException("The root has no parent");
 		return checkPosition(position).getParent();
 	}
 
-	@Override
-	public Iterable<Position<E>> childrenOf (Position<E> position) throws InvalidPositionException {
-		PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
+	@Override public Iterable<Position<E>> childrenOf(Position<E> position) throws InvalidPositionException {
+		PositionList<Position<E>> positionList = new NodePositionList<>();
 		if (size != 0)
 			preorderPositions(position, positionList);
 		return positionList;
@@ -94,72 +89,65 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return node != root && hasLeft(position) && hasRight(position);
 	}
 
-	@Override
-	public boolean isExternal (Position<E> position) throws InvalidPositionException {
+	@Override public boolean isExternal(Position<E> position) throws InvalidPositionException {
 		BTPosition<E> node = checkPosition(position);
 		return node != root && !hasLeft(position) && !hasRight(position);
 	}
 
-	@Override
-	public boolean isRoot (Position<E> position) throws InvalidPositionException {
+	@Override public boolean isRoot(Position<E> position) throws InvalidPositionException {
 		return checkPosition(position) == root;
 	}
 
-	@Override
-	public Iterator<E> iterator () {
-		PositionList<E> elements = new NodePositionList<E> ();
+	@Override public Iterator<E> iterator() {
+		PositionList<E> elements = new NodePositionList<>();
 		for (Position<E> position : getPositions())
 			elements.addLast(position.getElement());
 		return elements.iterator();
 	}
 
-	@Override
-	public Position<E> getLeft (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> getLeft(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		BTPosition<E> node = checkPosition(position);
 		if (!hasLeft(node))
 			throw new BoundaryViolationException("This position has no left child");
 		return node.getLeft();
 	}
 
-	@Override
-	public Position<E> getRight (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> getRight(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		BTPosition<E> node = checkPosition(position);
 		if (!hasRight(node))
 			throw new BoundaryViolationException("This position has no right child");
 		return node.getRight();
 	}
 
-	@Override
-	public boolean hasLeft (Position<E> position) throws InvalidPositionException {
+	@Override public boolean hasLeft(Position<E> position) throws InvalidPositionException {
 		return checkPosition(position).getLeft() != null;
 	}
 
-	@Override
-	public boolean hasRight (Position<E> position) throws InvalidPositionException {
+	@Override public boolean hasRight(Position<E> position) throws InvalidPositionException {
 		return checkPosition(position).getRight() != null;
 	}
 
-	public Position<E> addRoot (E element)  throws NonEmptyTreeException {
+	public Position<E> addRoot(E element)  throws NonEmptyTreeException {
 		if (size != 0 && root != null)
 			throw new NonEmptyTreeException("The binary tree is not empty");
-		root = new BTNode<E>(element, null, null, null);
+		root = new BTNode<>(element, null, null, null);
 		return root;
 	}
 
-	public Position<E> insertLeft (E element, Position<E> position) throws InvalidPositionException {
+	public Position<E> insertLeft(E element, Position<E> position) throws InvalidPositionException {
 		BTPosition<E> parent = checkPosition(position);
 		if (hasLeft(parent))
 			throw new InvalidPositionException("This position already have a left child");
-		BTPosition<E> left = new BTNode<E>(element, parent, null, null);
+		BTPosition<E> left = new BTNode<>(element, parent, null, null);
 		parent.setLeft(left);
 		return left;
 	}
 
-	public Position<E> insertRight (E element, Position<E> position) throws InvalidPositionException {
+	public Position<E> insertRight(E element, Position<E> position) throws InvalidPositionException {
 		BTPosition<E> parent = checkPosition(position);
 		if (hasRight(parent))
 			throw new InvalidPositionException("This position already have a right child");
-		BTPosition<E> right = new BTNode<E>(element, parent, null, null);
+		BTPosition<E> right = new BTNode<>(element, parent, null, null);
 		parent.setRight(right);
 		return right;
 	}

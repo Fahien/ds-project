@@ -3,41 +3,37 @@ package me.fahien.ds.stack;
 import me.fahien.ds.exception.EmptyStackException;
 
 public class ArrayStack<E> implements Stack<E> {
-	public static final int CAPACITY = 1024;
+	private static final int CAPACITY = 1024;
 
 	private int capacity;
 	private E stack[];
 	private int top = -1;
 
-	public ArrayStack () {
+	public ArrayStack() {
 		this(CAPACITY);
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayStack (int capacity) {
+	public ArrayStack(int capacity) {
 		this.capacity = capacity;
 		stack = (E[]) new Object[capacity];
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return top + 1;
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return size() == 0;
 	}
 
-	@Override
-	public E top () throws EmptyStackException {
+	@Override public E top() throws EmptyStackException {
 		if (isEmpty())
 			throw new EmptyStackException("The stack is empty");
 		return stack[top];
 	}
 
-	@Override
-	public void push (E element) {
+	@Override public void push(E element) {
 		if (size() == stack.length) {
 			capacity *= 2;
 			@SuppressWarnings("unchecked")
@@ -50,8 +46,7 @@ public class ArrayStack<E> implements Stack<E> {
 		stack[++top] = element;
 	}
 
-	@Override
-	public E pop () throws EmptyStackException {
+	@Override public E pop() throws EmptyStackException {
 		E element;
 		if (isEmpty())
 			throw new EmptyStackException("The stack is empty");
@@ -60,8 +55,7 @@ public class ArrayStack<E> implements Stack<E> {
 		return element;
 	}
 
-	@Override
-	public String toString () {
+	@Override public String toString() {
 		String string = "[";
 		if (!isEmpty()) {
 			string += stack[0];

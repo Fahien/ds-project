@@ -11,7 +11,7 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 	private PositionList<IEntry<Key, Value>> list;
 
 	public ListMap () {
-		list = new NodePositionList<IEntry<Key, Value>>();
+		list = new NodePositionList<>();
 	}
 
 	protected void checkKey (Key key) throws InvalidKeyException {
@@ -35,11 +35,11 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 			IEntry<Key, Value> entry = position.getElement();
 			if (entry.getKey().equals(key)) {
 				Value temp = entry.getValue();
-				list.set(position, new Entry<Key, Value>(key, value));
+				list.set(position, new Entry<>(key, value));
 				return temp;
 			}
 		}
-		list.addLast (new Entry<Key, Value>(key, value));
+		list.addLast (new Entry<>(key, value));
 		return null;
 	}
 
@@ -69,7 +69,7 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 
 	@Override
 	public Iterable<Key> keys () {
-		PositionList<Key> iterable = new NodePositionList<Key>();
+		PositionList<Key> iterable = new NodePositionList<>();
 		if (!list.isEmpty()) {
 			for (Position<IEntry<Key, Value>> current = list.first(); current != null; current = list.next(current)) {
 				iterable.addLast(current.getElement().getKey());
@@ -80,7 +80,7 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 
 	@Override
 	public Iterable<Value> values () {
-		PositionList<Value> iterable = new NodePositionList<Value>();
+		PositionList<Value> iterable = new NodePositionList<>();
 		if (!list.isEmpty()) {
 			for (Position<IEntry<Key, Value>> current = list.first(); current != null; current = list.next(current)) {
 				iterable.addLast(current.getElement().getValue());
@@ -91,7 +91,7 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 
 	@Override
 	public Iterable<IEntry<Key, Value>> entries () {
-		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<IEntry<Key, Value>>();
+		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<>();
 		if (!list.isEmpty()) {
 			for (Position<IEntry<Key, Value>> current = list.first(); current != null; current = list.next(current)) {
 				iterable.addLast(current.getElement());

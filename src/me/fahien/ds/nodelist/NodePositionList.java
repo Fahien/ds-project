@@ -14,8 +14,8 @@ public class NodePositionList<E> implements PositionList<E> {
 	protected DNode<E> header, trailer;
 
 	public NodePositionList () {
-		header = new DNode<E>(null, null, null);
-		trailer = new DNode<E>(header, null, null);
+		header = new DNode<>(null, null, null);
+		trailer = new DNode<>(header, null, null);
 		header.setNext(trailer);
 	}
 
@@ -50,7 +50,7 @@ public class NodePositionList<E> implements PositionList<E> {
 	public Position<E> addBefore (Position<E> position, E element) throws InvalidPositionException {
 		DNode<E> next = checkPosition(position);
 		size++;
-		DNode<E> node = new DNode<E>(next.getPrev(), next, element);
+		DNode<E> node = new DNode<>(next.getPrev(), next, element);
 		next.getPrev().setNext(node);
 		next.setPrev(node);
 		return node;
@@ -60,7 +60,7 @@ public class NodePositionList<E> implements PositionList<E> {
 	public Position<E> addAfter (Position<E> position, E element) throws InvalidPositionException {
 		DNode<E> prev = checkPosition(position);
 		size++;
-		DNode<E> node = new DNode<E>(prev, prev.getNext(), element);
+		DNode<E> node = new DNode<>(prev, prev.getNext(), element);
 		prev.getNext().setPrev(node);
 		prev.setNext(node);
 		return node;
@@ -69,7 +69,7 @@ public class NodePositionList<E> implements PositionList<E> {
 	@Override
 	public void addFirst (E element) {
 		size++;
-		DNode<E> node = new DNode<E>(header, header.getNext(), element);
+		DNode<E> node = new DNode<>(header, header.getNext(), element);
 		header.getNext().setPrev(node);
 		header.setNext(node);
 	}
@@ -77,7 +77,7 @@ public class NodePositionList<E> implements PositionList<E> {
 	@Override
 	public void addLast (E element) {
 		size++;
-		DNode<E> node = new DNode<E>(trailer.getPrev(), trailer, element);
+		DNode<E> node = new DNode<>(trailer.getPrev(), trailer, element);
 		trailer.getPrev().setNext(node);
 		trailer.setPrev(node);
 	}
@@ -137,7 +137,7 @@ public class NodePositionList<E> implements PositionList<E> {
 		if (!isEmpty()) {
 			DNode<E> node = header.getNext();
 			string += node.getElement();
-			for (node = node.getNext(); node.getNext() != null; node = node.getNext()) {
+			for (node = node.getNext(); node != null; node = node.getNext()) {
 				string += ", " + node.getElement();
 			}
 		}
@@ -158,12 +158,12 @@ public class NodePositionList<E> implements PositionList<E> {
 
 	@Override
 	public Iterator<E> iterator () {
-		return new ElementIterator<E>(this);
+		return new ElementIterator<>(this);
 	}
 
 	@Override
 	public Iterable<Position<E>> getPositions () {
-		PositionList<Position<E>> list = new NodePositionList<Position<E>>();
+		PositionList<Position<E>> list = new NodePositionList<>();
 		if(!isEmpty()) {
 			Position<E> position = first();
 			for (int i = 0; i < size - 1; i++) {
