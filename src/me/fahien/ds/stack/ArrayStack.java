@@ -3,20 +3,24 @@ package me.fahien.ds.stack;
 import me.fahien.ds.exception.EmptyStackException;
 
 public class ArrayStack<E> implements Stack<E> {
+	/** Default array capacity */
 	private static final int CAPACITY = 1024;
 
 	private int capacity;
-	private E stack[];
+	/** Generic array used for storage */
+	private E data[];
+	/** Index of the top element in the stack */
 	private int top = -1;
 
+	/** Constructs stack with default capacity */
 	public ArrayStack() {
 		this(CAPACITY);
 	}
 
-	@SuppressWarnings("unchecked")
-	public ArrayStack(int capacity) {
+	/** Construct stack with given capacity */
+	@SuppressWarnings("unchecked") public ArrayStack(int capacity) {
 		this.capacity = capacity;
-		stack = (E[]) new Object[capacity];
+		data = (E[]) new Object[capacity];
 	}
 
 	@Override public int size() {
@@ -29,40 +33,53 @@ public class ArrayStack<E> implements Stack<E> {
 
 	@Override public E top() throws EmptyStackException {
 		if (isEmpty())
-			throw new EmptyStackException("The stack is empty");
-		return stack[top];
+			throw new EmptyStackException("Empty stack");
+		return data[top];
 	}
 
 	@Override public void push(E element) {
-		if (size() == stack.length) {
+		if (size() == data.length) {
 			capacity *= 2;
 			@SuppressWarnings("unchecked")
 			E temp[] = (E[]) new Object[capacity];
-			for (int i = 0; i < stack.length; i++) {
-				temp[i] = stack[i];
+			for (int i = 0; i < data.length; i++) {
+				temp[i] = data[i];
 			}
-			stack = temp;
+			data = temp;
 		}
-		stack[++top] = element;
+		data[++top] = element;
 	}
 
 	@Override public E pop() throws EmptyStackException {
-		E element;
 		if (isEmpty())
-			throw new EmptyStackException("The stack is empty");
-		element = stack[top];
-		stack[top--] = null;
+			throw new EmptyStackException("Empty stack");
+		E element = data[top];
+		data[top--] = null;
 		return element;
 	}
 
 	@Override public String toString() {
 		String string = "[";
 		if (!isEmpty()) {
-			string += stack[0];
-			for (int i = 1; i < stack.length && stack[i] != null && i < size(); i++) {
-				string += ", " + stack[i];
+			string += data[0];
+			for (int i = 1; i < data.length && data[i] != null && i < size(); i++) {
+				string += ", " + data[i];
 			}
 		}
 		return string += "]";
+	}
+
+	public void union(Stack<E> stack) {
+		Stack<E> temp = new ArrayStack<>();
+		while (!isEmpty()) temp.push(pop());
+		int stackSize = stack.size();
+		while (!stack.isEmpty()) temp.push(stack.pop());
+		E element;
+		for (int i = 0; i < stackSize; i++) {
+			element = temp.pop();
+			stack.push(element);
+			push(element);
+		}
+		while (!temp.isEmpty()) push(temp.pop());
 	}
 }

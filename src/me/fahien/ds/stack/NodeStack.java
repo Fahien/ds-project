@@ -21,8 +21,7 @@ public class NodeStack<E> implements Stack<E> {
 	}
 
 	@Override public E top() throws EmptyStackException {
-		if (isEmpty())
-			throw new EmptyStackException("The stack is empty");
+		if (isEmpty()) throw new EmptyStackException("The stack is empty");
 		return top.getElement();
 	}
 
@@ -32,8 +31,7 @@ public class NodeStack<E> implements Stack<E> {
 	}
 
 	@Override public E pop() throws EmptyStackException {
-		if (isEmpty())
-			throw new EmptyStackException("The stack is empty");
+		if (isEmpty()) throw new EmptyStackException("The stack is empty");
 		E temp = top.getElement();
 		top = top.getNext();
 		size--;
