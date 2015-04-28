@@ -96,4 +96,18 @@ public class ArrayStackTest {
 		StringBuilder builder = new StringBuilder(string);
 		assertEquals(builder.reverse().toString(), reverse(string));
 	}
+
+	@Test public void testUnionStack() {
+		Stack<Integer> stack = new ArrayStack<>();
+		for (int i = 1; i < 4; i++) {
+			stack.push(i);
+		}
+		ArrayStack<Integer> array = new ArrayStack<>();
+		for (int i = 4; i < 8; i++) {
+			array.push(i);
+		}
+		array.union(stack);
+		assertEquals("[1, 2, 3, 4, 5, 6, 7]", array.toString());
+		assertEquals(new Integer(7), array.top());
+	}
 }

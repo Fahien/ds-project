@@ -46,6 +46,7 @@ public class NodeStack<E> implements Stack<E> {
 				string += ", " + node.getElement();
 			}
 		}
-		return string += "]";
+		string += "]";
+		return string;
 	}
 }

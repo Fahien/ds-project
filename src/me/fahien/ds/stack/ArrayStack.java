@@ -42,9 +42,7 @@ public class ArrayStack<E> implements Stack<E> {
 			capacity *= 2;
 			@SuppressWarnings("unchecked")
 			E temp[] = (E[]) new Object[capacity];
-			for (int i = 0; i < data.length; i++) {
-				temp[i] = data[i];
-			}
+			System.arraycopy(data, 0, temp, 0, data.length);
 			data = temp;
 		}
 		data[++top] = element;
@@ -66,7 +64,8 @@ public class ArrayStack<E> implements Stack<E> {
 				string += ", " + data[i];
 			}
 		}
-		return string += "]";
+		string += "]";
+		return string;
 	}
 
 	public void union(Stack<E> stack) {

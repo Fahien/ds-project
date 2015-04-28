@@ -38,16 +38,10 @@ public class ArrayQueue<E> implements Queue<E> {
 			@SuppressWarnings("unchecked")
 			E temp[] = (E[]) new Object[capacity * 2];
 			if (front < rear) {
-				for (int i = 0; i < queue.length; i++) {
-					temp[i] = queue[i];
-				}
+				System.arraycopy(queue, 0, temp, 0, queue.length);
 			} else {
-				for (int i = 0; i < rear; i++) {
-					temp[i] = queue[i];
-				}
-				for (int i = queue.length - 1; i >= front; i--) {
-					temp[i + capacity] = queue[i];
-				}
+				System.arraycopy(queue, 0, temp, 0, rear);
+				System.arraycopy(queue, front, temp, front + capacity, queue.length - front);
 				front += capacity;
 			}
 			queue = temp;
@@ -82,6 +76,7 @@ public class ArrayQueue<E> implements Queue<E> {
 				}
 			}
 		}
-		return string += "]";
+		string += "]";
+		return string;
 	}
 }
