@@ -5,7 +5,7 @@ import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.nodelist.NodePositionList;
-import me.fahien.ds.util.position.DNode;
+import me.fahien.ds.util.position.DLNode;
 import me.fahien.ds.util.position.Position;
 
 public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> {
@@ -46,7 +46,7 @@ public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> 
 	@Override
 	public Position<E> atIndex (int index) throws BoundaryViolationException {
 		checkIndex(index);
-		DNode<E> node;
+		DLNode<E> node;
 		if (index <= size /2) {
 			node = header.getNext();
 			for (int i = 0; i < index; i++) {
@@ -64,8 +64,8 @@ public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> 
 	@Override
 	public int indexOf (Position<E> position) throws InvalidPositionException {
 		checkPosition(position);
-		DNode<E> left = header.getNext();
-		DNode<E> right = trailer.getPrev();
+		DLNode<E> left = header.getNext();
+		DLNode<E> right = trailer.getPrev();
 		int i = 0;
 		for (; i < size / 2; i++, left = left.getNext(), right = right.getPrev()) {
 			if (left == position) {
@@ -81,28 +81,28 @@ public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> 
 	@Override
 	public E getFirst () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return header.getNext().getElement();
 	}
 
 	@Override
 	public E getLast () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return trailer.getPrev().getElement();
 	}
 
 	@Override
 	public E removeFirst () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return remove(header.getNext());
 	}
 
 	@Override
 	public E removeLast () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return remove(trailer.getPrev());
 	}
 }

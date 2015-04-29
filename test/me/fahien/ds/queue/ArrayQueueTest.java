@@ -21,7 +21,7 @@ public class ArrayQueueTest {
 	}
 
 	@Test(dataProvider = "strings") public void testAllMethods(String string) {
-		Queue<Character> queue = new ArrayQueue<>();
+		Queue<Character> queue = new ArrayQueue<>(16);
 		for (int i = 0; i < string.length(); i++) {
 			queue.enqueue(string.charAt(i));
 		}
@@ -53,7 +53,7 @@ public class ArrayQueueTest {
 
 	private Integer extract(Queue<Integer> queue, int position) throws NotEnoughElementsException {
 		if (position > queue.size())
-			throw new NotEnoughElementsException("The queue has not enough elements");
+			throw new NotEnoughElementsException();
 		Integer integer = null;
 		for (int i = 0; i < queue.size(); i++) {
 			try {

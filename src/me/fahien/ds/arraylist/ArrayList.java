@@ -3,11 +3,11 @@ package me.fahien.ds.arraylist;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 
 public class ArrayList<E> implements IndexList<E> {
-	public static final int CAPACITY = 1024;
+	private static final int CAPACITY = 1024;
 
-	protected int capacity;
-	protected E array[];
-	protected int size;
+	private int capacity;
+	private E[] array;
+	private int size;
 
 	public ArrayList() {
 		this(CAPACITY);
@@ -24,9 +24,7 @@ public class ArrayList<E> implements IndexList<E> {
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		E element = array[index];
 		array[index] = null;
-		for (int i = index; i < size() - 1; i++) {
-			array[i] = array[i + 1];
-		}
+		System.arraycopy(array, index + 1, array, index, size() - 1 - index);
 		size--;
 		return element;
 	}
@@ -38,14 +36,10 @@ public class ArrayList<E> implements IndexList<E> {
 			capacity *= 2;
 			@SuppressWarnings("unchecked")
 			E temp[] = (E[]) new Object[capacity];
-			for (int i = 0; i < array.length; i++) {
-				temp[i] = array[i];
-			}
+			System.arraycopy(array, 0, temp, 0, array.length);
 			array = temp;
 		}
-		for (int i = size(); i > index; i--) {
-			array[i] = array[i - 1];
-		}
+		System.arraycopy(array, index, array, index + 1, size() - index);
 		array[index] = element;
 		size++;
 	}

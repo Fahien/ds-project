@@ -12,8 +12,8 @@ import me.fahien.ds.util.composition.Entry;
 import me.fahien.ds.util.position.Position;
 
 public class UnsortedListPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> {
-	protected PositionList<IEntry<Key, Value>> entries;
-	protected Comparator<Key> comparator;
+	private PositionList<IEntry<Key, Value>> entries;
+	private Comparator<Key> comparator;
 
 	public UnsortedListPriorityQueue() {
 		entries = new NodePositionList<>();

@@ -181,28 +181,28 @@ public class ArraySequence<E> implements Sequence<E> {
 	@Override
 	public E getFirst () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return array.get(0).getElement();
 	}
 
 	@Override
 	public E getLast () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return array.get(size() - 1).getElement();
 	}
 
 	@Override
 	public E removeFirst () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return remove(0);
 	}
 
 	@Override
 	public E removeLast () throws EmptySequenceException {
 		if (isEmpty())
-			throw new EmptySequenceException("The sequence is empty");
+			throw new EmptySequenceException();
 		return remove(size() - 1);
 	}
 

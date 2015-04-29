@@ -12,7 +12,7 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	private PositionList<IEntry<Key, Value>> entries;
 
 	public LogFile () {
-		entries = new NodePositionList<IEntry<Key, Value>>();
+		entries = new NodePositionList<>();
 	}
 
 	protected void checkKey (Key key) throws InvalidKeyException {
@@ -48,7 +48,7 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	@Override
 	public Iterable<IEntry<Key, Value>> findAll (Key key) throws InvalidKeyException {
 		checkKey(key);
-		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<IEntry<Key, Value>>();
+		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<>();
 		for (IEntry<Key, Value> entry : entries) {
 			if (entry.getKey().equals(key))
 				iterable.addLast(entry);
@@ -59,7 +59,7 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	@Override
 	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		IEntry<Key, Value> entry = new Entry<Key, Value>(key, value);
+		IEntry<Key, Value> entry = new Entry<>(key, value);
 		entries.addLast(entry);
 		return entry;
 	}
@@ -77,7 +77,7 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 
 	@Override
 	public Iterable<IEntry<Key, Value>> getEntries () {
-		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<IEntry<Key, Value>>();
+		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<>();
 		if (!entries.isEmpty()) {
 			for (Position<IEntry<Key, Value>> current = entries.first(); current != null; current = entries.next(current)) {
 				iterable.addLast(current.getElement());

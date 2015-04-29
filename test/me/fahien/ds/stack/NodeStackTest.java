@@ -9,8 +9,7 @@ import static org.testng.Assert.assertTrue;
 /** NodeStack Test Case
  * @author Fahien */
 public class NodeStackTest {
-	@DataProvider
-	public Object[][] validData() {
+	@DataProvider public Object[][] validData() {
 		return new String[][]{
 				new String[]{"x((abc)())"}, new String[]{"(as(df))()"}
 		};

@@ -29,7 +29,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	@Override public E front() throws EmptyQueueException {
 		if (isEmpty())
-			throw new EmptyQueueException("The queue is empty");
+			throw new EmptyQueueException();
 		return queue[front];
 	}
 
@@ -53,7 +53,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	@Override public E dequeue() throws EmptyQueueException {
 		if (isEmpty())
-			throw new EmptyQueueException("The queue is empty");
+			throw new EmptyQueueException();
 		front = ++front % capacity;
 		return queue[front - 1];
 	}

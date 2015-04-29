@@ -39,7 +39,7 @@ public class LinkedTree<E> implements Tree<E> {
 
 	@Override public Iterator<E> iterator() {
 		Iterable<Position<E>> positions = getPositions();	// Iterable collection of nodes
-		PositionList<E> positionList = new NodePositionList<E>();
+		PositionList<E> positionList = new NodePositionList<>();
 		for (Position<E> position : positions) {
 			positionList.addLast(position.getElement());
 		}
@@ -56,7 +56,7 @@ public class LinkedTree<E> implements Tree<E> {
 	}
 
 	@Override public Iterable<Position<E>> getPositions() {
-		PositionList<Position<E>> positions = new NodePositionList<Position<E>>();
+		PositionList<Position<E>> positions = new NodePositionList<>();
 		if (size != 0)
 			preorderPositions(root, positions);
 		return positions;
@@ -82,7 +82,7 @@ public class LinkedTree<E> implements Tree<E> {
 	}
 
 	@Override public Iterable<Position<E>> childrenOf(Position<E> position) throws InvalidPositionException {
-		PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
+		PositionList<Position<E>> positionList = new NodePositionList<>();
 		if (size != 0)
 			preorderPositions(position, positionList);
 		return positionList;
@@ -149,13 +149,13 @@ public class LinkedTree<E> implements Tree<E> {
 	public Position<E> addRoot(E element)  throws NonEmptyTreeException {
 		if (size != 0 && root != null)
 			throw new NonEmptyTreeException("The tree is not empty");
-		root = new TreeNode<E>(element, null, null);
+		root = new TreeNode<>(element, null, null);
 		return root;
 	}
 
 	public Position<E> addChild(E element, Position<E> position) {
 		TreePosition<E> parent = checkPosition(position);
-		TreePosition<E> child = new TreeNode<E>(element, parent, null);
+		TreePosition<E> child = new TreeNode<>(element, parent, null);
 		PositionList<Position<E>> children = parent.getChildren();
 		children.addLast(child);
 		parent.setChildren(children);
