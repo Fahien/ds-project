@@ -7,8 +7,6 @@ public class TreeNode<E> implements TreePosition<E> {
 	private TreePosition<E> parent;
 	private PositionList<Position<E>> children;
 
-	public TreeNode() {}
-
 	public TreeNode(E element, TreePosition<E> parent, PositionList<Position<E>> children) {
 		this.element = element;
 		this.parent = parent;

@@ -6,16 +6,16 @@ public class LocationAwareEntry<Key, Value> extends Entry<Key, Value> implements
 
 	protected Position<IEntry<Key, Value>> location;
 
-	public LocationAwareEntry (Key key, Value value) {
+	public LocationAwareEntry(Key key, Value value) {
 		super(key, value);
 	}
 
-	public LocationAwareEntry (Key key, Value value, Position<IEntry<Key,Value>> location) {
+	public LocationAwareEntry(Key key, Value value, Position<IEntry<Key,Value>> location) {
 		super(key, value);
 		this.location = location;
 	}
 
-	public Position<IEntry<Key, Value>> getLocation () {
+	public Position<IEntry<Key, Value>> getLocation() {
 		return location;
 	}
 

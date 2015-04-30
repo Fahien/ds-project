@@ -63,12 +63,12 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (!isEmpty()) {
 			string += queue[front];
 			if (front < rear) {
-				for (int i = front; i < rear; i++) {
+				for (int i = front + 1; i < rear; i++) {
 					string += ", " + queue[i];
 				}
 			}
 			else {
-				for (int i = front; i < capacity; i++) {
+				for (int i = front + 1; i < capacity; i++) {
 					string += ", " + queue[i];
 				}
 				for (int i = 0; i < rear; i++) {

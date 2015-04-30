@@ -78,7 +78,7 @@ public class NodeDeque<E> implements Deque<E> {
 		if (!isEmpty()) {
 			DLNode<E> node = header.getNext();
 			string += node.getElement();
-			for (node = node.getNext(); node != null; node = node.getNext()) {
+			for (node = node.getNext(); node != trailer; node = node.getNext()) {
 				string += ", " + node.getElement();
 			}
 		}

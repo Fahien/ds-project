@@ -8,7 +8,6 @@ import static org.testng.Assert.*;
 /** DequeStack Test case
  * @author Fahien */
 public class DequeStackTest {
-
 	@Test public void simpleTest() {
 		Stack<Integer> stack = new DequeStack<>();
 		stack.push(1);

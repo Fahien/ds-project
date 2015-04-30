@@ -34,7 +34,9 @@ public class BTNode<E> implements BTPosition<E> {
 	}
 
 	/** Returns The right child */
-	@Override public BTPosition<E> getRight() { return right; }
+	@Override public BTPosition<E> getRight() {
+		return right;
+	}
 
 	/** @param right The right child */
 	@Override public void setRight(BTPosition<E> right) {

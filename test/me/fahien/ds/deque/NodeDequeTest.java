@@ -1,7 +1,8 @@
 package me.fahien.ds.deque;
 
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
+
+import java.util.logging.Logger;
 
 import me.fahien.ds.exception.EmptyDequeException;
 
@@ -10,7 +11,7 @@ import static org.testng.Assert.*;
 /** NodeDeque Test Case
  * @author Fahien */
 public class NodeDequeTest {
-	private static final Logger logger = Logger.getLogger(NodeDequeTest.class);
+	private static final Logger logger = Logger.getLogger(NodeDequeTest.class.getName());
 
 	/** Reinforcement 6.12 */
 	@Test public void dequeOperations() {
@@ -38,7 +39,7 @@ public class NodeDequeTest {
 			assertEquals(new Integer(1), deque.removeFirst());
 			logger.info(deque.toString());
 		} catch (EmptyDequeException e) {
-			logger.error(e.getMessage());
+			logger.warning(e.getMessage());
 		}
 	}
 }

@@ -2,7 +2,8 @@ package me.fahien.ds.queue;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
+
+import java.util.logging.Logger;
 
 import me.fahien.ds.exception.EmptyQueueException;
 import me.fahien.ds.exception.NotEnoughElementsException;
@@ -12,7 +13,7 @@ import static org.testng.Assert.*;
 /** ArrayQueue Test Case
  * @author Fahien */
 public class ArrayQueueTest {
-	private static final Logger logger = Logger.getLogger(ArrayQueueTest.class);
+	private static final Logger logger = Logger.getLogger(ArrayQueueTest.class.getName());
 
 	@DataProvider public Object[][] strings() {
 		return new String[][]{
@@ -30,7 +31,7 @@ public class ArrayQueueTest {
 		try {
 			assertEquals(new Character(string.charAt(0)), queue.front());
 		} catch (EmptyQueueException e) {
-			logger.error(e.getMessage());
+			logger.warning(e.getMessage());
 		}
 		if (string.length() > 0 ) {
 			assertFalse(queue.isEmpty());
@@ -39,7 +40,7 @@ public class ArrayQueueTest {
 			try {
 				queue.dequeue();
 			} catch (EmptyQueueException e) {
-				logger.error(e.getMessage());
+				logger.warning(e.getMessage());
 			}
 		}
 		assertTrue(queue.isEmpty());
@@ -63,7 +64,7 @@ public class ArrayQueueTest {
 				}
 				else { queue.enqueue(queue.dequeue()); }
 			} catch (EmptyQueueException e) {
-				logger.error(e.getMessage());
+				logger.warning(e.getMessage());
 			}
 		}
 		return integer;
@@ -80,7 +81,7 @@ public class ArrayQueueTest {
 			try {
 				assertEquals(integers[i], extract(queue, i));
 			} catch (NotEnoughElementsException e) {
-				logger.error(e.getMessage());
+				logger.warning(e.getMessage());
 			}
 		}
 		assertEquals(integers.length, queue.size());
