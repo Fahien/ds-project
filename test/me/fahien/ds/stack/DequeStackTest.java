@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/** DequeStack Test case
+/** Deque Stack Test case
  * @author Fahien */
 public class DequeStackTest {
 	@Test public void simpleTest() {

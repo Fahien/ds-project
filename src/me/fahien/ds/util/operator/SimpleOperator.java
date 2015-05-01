@@ -22,6 +22,14 @@ public enum SimpleOperator implements Operator {
 		@Override public int apply(int a, int b) {
 			return a / b;
 		}
+	},
+	OPEN_PARENTHESIS('(',2) {
+		@Override public int apply(int a, int b) {
+			return 0;
+		}
+	},
+	CLOSED_PARENTHESIS(')',2) {
+		@Override public int apply(int a, int b) { return 0; }
 	};
 
 	private Character symbol;
@@ -44,4 +52,6 @@ public enum SimpleOperator implements Operator {
 		}
 		throw new IllegalArgumentException("No operator with symbol " + symbol);
 	}
+
+	public String toString() { return symbol.toString(); }
 }

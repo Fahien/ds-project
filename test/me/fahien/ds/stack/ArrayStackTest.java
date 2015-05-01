@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/** ArrayStack Test Case
+/** Array Stack Test Case
  * @author Fahien */
 public class ArrayStackTest {
 	@DataProvider public Object[][] validData() {
