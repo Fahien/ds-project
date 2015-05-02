@@ -6,16 +6,17 @@ import java.util.logging.Logger;
 
 import me.fahien.ds.exception.EmptyDequeException;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
-/** Node Deque Test Case
+/** List Deque Test Case
  * @author Fahien */
-public class NodeDequeTest {
-	private static final Logger logger = Logger.getLogger(NodeDequeTest.class.getName());
+public class ListDequeTest {
+	private static final Logger logger = Logger.getLogger(ListDequeTest.class.getName());
 
 	/** Reinforcement 6.12 */
 	@Test public void dequeOperations() {
-		Deque<Integer> deque = new NodeDeque<>();
+		Deque<Integer> deque = new ListDeque<>();
 		deque.addFirst(3);
 		try {
 			assertEquals(new Integer(3), deque.getFirst());

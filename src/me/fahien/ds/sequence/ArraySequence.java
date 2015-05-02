@@ -2,7 +2,7 @@ package me.fahien.ds.sequence;
 
 import java.util.Iterator;
 
-import me.fahien.ds.arraylist.ArrayList;
+import me.fahien.ds.list.ArrayList;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.EmptySequenceException;

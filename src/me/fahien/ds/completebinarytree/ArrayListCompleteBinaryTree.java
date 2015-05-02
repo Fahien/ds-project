@@ -2,7 +2,7 @@ package me.fahien.ds.completebinarytree;
 
 import java.util.Iterator;
 
-import me.fahien.ds.arraylist.IndexList;
+import me.fahien.ds.list.List;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidPositionException;
@@ -12,7 +12,7 @@ import me.fahien.ds.util.position.BTIndexedPosition;
 import me.fahien.ds.util.position.Position;
 
 public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
-	IndexList<BTIndexedPosition<E>> tree;
+	List<BTIndexedPosition<E>> tree;
 
 	protected BTIndexedPosition<E> checkPosition (Position<E> position) throws InvalidPositionException {
 		if (position == null)
