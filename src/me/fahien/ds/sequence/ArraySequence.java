@@ -10,8 +10,8 @@ import me.fahien.ds.exception.FullSequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.iterator.ElementIterator;
-import me.fahien.ds.nodelist.NodePositionList;
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.NodePositionList;
+import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.position.ArrayPosition;
 import me.fahien.ds.util.position.Position;
 

@@ -1,6 +1,6 @@
 package me.fahien.ds.util.position;
 
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.PositionList;
 
 public class TreeNode<E> implements TreePosition<E> {
 	private E element;

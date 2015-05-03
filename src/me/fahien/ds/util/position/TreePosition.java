@@ -1,6 +1,6 @@
 package me.fahien.ds.util.position;
 
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.PositionList;
 
 public interface TreePosition<E> extends Position<E> {
 	public void setElement(E element);

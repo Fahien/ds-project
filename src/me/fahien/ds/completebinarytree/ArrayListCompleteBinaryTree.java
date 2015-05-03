@@ -6,8 +6,8 @@ import me.fahien.ds.list.List;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.nodelist.NodePositionList;
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.NodePositionList;
+import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.position.BTIndexedPosition;
 import me.fahien.ds.util.position.Position;
 

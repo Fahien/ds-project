@@ -1,4 +1,4 @@
-package me.fahien.ds.nodelist;
+package me.fahien.ds.positionlist;
 
 import java.util.Iterator;
 
@@ -10,134 +10,128 @@ import me.fahien.ds.util.position.DLNode;
 import me.fahien.ds.util.position.Position;
 
 public class NodePositionList<E> implements PositionList<E> {
-	protected int size;
-	protected DLNode<E> header, trailer;
+	private int size;
+	private DLNode<E> header;
+	private DLNode<E> trailer;
 
-	public NodePositionList () {
+	public NodePositionList() {
 		header = new DLNode<>(null, null, null);
 		trailer = new DLNode<>(header, null, null);
 		header.setNext(trailer);
 	}
 
-	protected DLNode<E> checkPosition (Position<E> position) throws InvalidPositionException {
+	protected DLNode<E> getHeader() {
+		return header;
+	}
+
+	protected DLNode<E> getTrailer() {
+		return trailer;
+	}
+
+	/** Validates the position and returns it as a node */
+	protected DLNode<E> checkPosition(Position<E> position) throws InvalidPositionException {
 		if (position == null)
-			throw new InvalidPositionException("Position is null");
+			throw new InvalidPositionException("The position is null");
 		if (position == header)
-			throw new InvalidPositionException("Header is not a valid position");
+			throw new InvalidPositionException("The header is not a valid position");
 		if (position == trailer)
-			throw new InvalidPositionException("Trailer is not a valid position");
+			throw new InvalidPositionException("The trailer is not a valid position");
 		try {
-			DLNode<E> temp = (DLNode<E>) position;
+			DLNode<E> temp = (DLNode<E>)position;
 			if ((temp.getPrev() == null) || (temp.getNext() == null))
-				throw new InvalidPositionException("Invalid position");
+				throw new InvalidPositionException("This position is no longer in the list");
 			return temp;
 		} catch (ClassCastException e) {
 			throw new InvalidPositionException("Invalid type of position");
 		}
 	}
 
-	@Override
-	public int size () {
+	@Override public int size() {
 		return size;
 	}
 
-	@Override
-	public boolean isEmpty () {
+	@Override public boolean isEmpty() {
 		return size == 0 && header.getNext() == trailer && trailer.getPrev() == header;
 	}
 
-	@Override
-	public Position<E> addBefore (Position<E> position, E element) throws InvalidPositionException {
-		DLNode<E> next = checkPosition(position);
-		size++;
-		DLNode<E> node = new DLNode<>(next.getPrev(), next, element);
-		next.getPrev().setNext(node);
-		next.setPrev(node);
-		return node;
-	}
-
-	@Override
-	public Position<E> addAfter (Position<E> position, E element) throws InvalidPositionException {
-		DLNode<E> prev = checkPosition(position);
-		size++;
-		DLNode<E> node = new DLNode<>(prev, prev.getNext(), element);
-		prev.getNext().setPrev(node);
+	/** Adds an element to the list between the given nodes */
+	private Position<E> addBetween(E element, DLNode<E> prev, DLNode<E> next) {
+		DLNode<E> node = new DLNode<>(prev, next, element);
 		prev.setNext(node);
+		next.setPrev(node);
+		size++;
 		return node;
 	}
 
-	@Override
-	public void addFirst (E element) {
-		size++;
-		DLNode<E> node = new DLNode<>(header, header.getNext(), element);
-		header.getNext().setPrev(node);
-		header.setNext(node);
+	@Override public Position<E> addBefore(Position<E> position, E element) throws InvalidPositionException {
+		DLNode<E> next = checkPosition(position);
+		return addBetween(element, next.getPrev(), next);
 	}
 
-	@Override
-	public void addLast (E element) {
-		size++;
-		DLNode<E> node = new DLNode<>(trailer.getPrev(), trailer, element);
-		trailer.getPrev().setNext(node);
-		trailer.setPrev(node);
+	@Override public Position<E> addAfter(Position<E> position, E element) throws InvalidPositionException {
+		DLNode<E> prev = checkPosition(position);
+		return addBetween(element, prev, prev.getNext());
 	}
 
-	@Override
-	public E remove (Position<E> position) throws InvalidPositionException {
+	@Override public void addFirst(E element) {
+		addBetween(element, header, header.getNext());
+	}
+
+	@Override public void addLast(E element) {
+		addBetween(element, trailer.getPrev(), trailer);
+	}
+
+	@Override public E remove(Position<E> position) throws InvalidPositionException {
 		DLNode<E> removed = checkPosition(position);
 		size--;
 		removed.getPrev().setNext(removed.getNext());
 		removed.getNext().setPrev(removed.getPrev());
+		E element = removed.getElement();
 		removed.setPrev(null);
 		removed.setNext(null);
-		return removed.getElement();
+		removed.setElement(null);
+		return element;
 	}
 
-	@Override
-	public E set (Position<E> position, E element) throws InvalidPositionException {
+	@Override public E set(Position<E> position, E element) throws InvalidPositionException {
 		DLNode<E> node = checkPosition(position);
 		E replace = node.getElement();
 		node.setElement(element);
 		return replace;
 	}
 
-	@Override
-	public Position<E> first () throws EmptyListException {
+	@Override public Position<E> first() throws EmptyListException {
 		if (isEmpty())
 			throw new EmptyListException("The list is empty");
 		return header.getNext();
 	}
 
-	@Override
-	public Position<E> last () throws EmptyListException {
+	@Override public Position<E> last() throws EmptyListException {
 		if (isEmpty())
 			throw new EmptyListException("The list is empty");
 		return trailer.getPrev();
 	}
 
-	@Override
-	public Position<E> prev (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> prev(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		DLNode<E> node = checkPosition(position);
 		if (node.getPrev() == header)
 			throw new BoundaryViolationException("There is not element before the first one");
 		return node.getPrev();
 	}
 
-	@Override
-	public Position<E> next (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> next(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		DLNode<E> node = checkPosition(position);
 		if (node.getNext() == trailer)
 			throw new BoundaryViolationException("There is not element after the last one");
-		return node.getPrev();
+		return node.getNext();
 	}
 
-	@Override
-	public String toString () {
+	@Override public String toString() {
 		String string = "[";
 		if (!isEmpty()) {
 			DLNode<E> node = header.getNext();
 			string += node.getElement();
-			for (node = node.getNext(); node != null; node = node.getNext()) {
+			for (node = node.getNext(); node != trailer; node = node.getNext()) {
 				string += ", " + node.getElement();
 			}
 		}
@@ -145,7 +139,7 @@ public class NodePositionList<E> implements PositionList<E> {
 		return string;
 	}
 
-	public void reverse () {
+	public void reverse() {
 		if (!isEmpty() && size > 1) {
 			DLNode<E> left = header.getNext();
 			DLNode<E> right = trailer.getPrev();
@@ -157,13 +151,11 @@ public class NodePositionList<E> implements PositionList<E> {
 		}
 	}
 
-	@Override
-	public Iterator<E> iterator () {
+	@Override public Iterator<E> iterator() {
 		return new ElementIterator<>(this);
 	}
 
-	@Override
-	public Iterable<Position<E>> getPositions () {
+	@Override public Iterable<Position<E>> getPositions() {
 		PositionList<Position<E>> list = new NodePositionList<>();
 		if(!isEmpty()) {
 			Position<E> position = first();

@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 import me.fahien.ds.exception.EmptyPriorityQueueException;
 import me.fahien.ds.exception.InvalidKeyException;
-import me.fahien.ds.nodelist.NodePositionList;
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.NodePositionList;
+import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.comparator.DefaultComparator;
 import me.fahien.ds.util.composition.IEntry;
 import me.fahien.ds.util.composition.Entry;

@@ -1,5 +1,7 @@
 package me.fahien.ds.util.position;
 
+import me.fahien.ds.exception.InvalidPositionException;
+
 /** Double-Linked Node
  * @author Fahien */
 public class DLNode<E> implements Position<E> {
@@ -15,7 +17,9 @@ public class DLNode<E> implements Position<E> {
 		this.element = element;
 	}
 
-	@Override public E getElement() {
+	@Override public E getElement() throws InvalidPositionException {
+		if (prev == null || next == null)
+			throw new InvalidPositionException("Invalid position for " + element);
 		return element;
 	}
 

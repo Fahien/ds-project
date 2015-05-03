@@ -4,7 +4,7 @@ import me.fahien.ds.list.List;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.position.Position;
 
 public interface Sequence<E> extends PositionList<E>, List<E> {

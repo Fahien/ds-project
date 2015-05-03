@@ -3,7 +3,7 @@ package me.fahien.ds.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.position.Position;
 
 public class ElementIterator<E> implements Iterator<E> {
