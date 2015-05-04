@@ -4,7 +4,7 @@ public class BTIndexedPosition<E> implements Position<E> {
 	private E element;
 	private int index;
 
-	/** Contructs a new BinaryTree Indexed Position
+	/** Constructs a new BinaryTree Indexed Position
 	 * @param element The element
 	 * @param index The index */
 	public BTIndexedPosition(E element, int index) {

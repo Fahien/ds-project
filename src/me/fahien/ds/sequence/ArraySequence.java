@@ -30,20 +30,13 @@ public class ArraySequence<E> implements Sequence<E> {
 		array = new ArrayList<>(capacity);
 	}
 
-	@Override public Position<E> atIndex(int index) throws BoundaryViolationException {
-		checkIndex(index);
-		return array.get(index);
+	/** Checks whether the given index is in range [0, n - 1] */
+	private void checkIndex(int index, int n) throws IndexOutOfBoundsException {
+		if (index < 0 || index >= n)
+			throw new IndexOutOfBoundsException("Illegal index of "+ index);
 	}
 
-	@Override public int indexOf(Position<E> position) throws InvalidPositionException {
-		return checkPosition(position).getIndex();
-	}
-
-	private void checkIndex(int index) throws BoundaryViolationException {
-		if (index < 0 || index >= size())
-			throw new BoundaryViolationException("Illegal index of "+ index);
-	}
-
+	/** Checks whether the given position is valid */
 	private ArrayPosition<E> checkPosition(Position<E> position) {
 		if (position == null)
 			throw new InvalidPositionException("Position is null");
@@ -52,6 +45,15 @@ public class ArraySequence<E> implements Sequence<E> {
 		} catch (ClassCastException e) {
 			throw new InvalidPositionException("Invalid type of position");
 		}
+	}
+
+	@Override public Position<E> atIndex(int index) throws IndexOutOfBoundsException {
+		checkIndex(index, size());
+		return array.get(index);
+	}
+
+	@Override public int indexOf(Position<E> position) throws InvalidPositionException {
+		return checkPosition(position).getIndex();
 	}
 
 	@Override public int size() {
@@ -64,7 +66,7 @@ public class ArraySequence<E> implements Sequence<E> {
 
 	@Override public Position<E> addBefore(Position<E> position, E element) throws InvalidPositionException {
 		if (size() == capacity)
-			throw new FullSequenceException("Sequence is full");
+			throw new FullSequenceException();
 		checkPosition(position);
 		ArrayPosition<E> arrayPosition = new ArrayPosition<>(indexOf(position), element);
 		array.add(indexOf(position), arrayPosition);
@@ -76,7 +78,7 @@ public class ArraySequence<E> implements Sequence<E> {
 
 	@Override public Position<E> addAfter(Position<E> position, E element) throws InvalidPositionException {
 		if (size() == capacity)
-			throw new FullSequenceException("Sequence is full");
+			throw new FullSequenceException();
 		checkPosition(position);
 		ArrayPosition<E> arrayPosition = new ArrayPosition<>(indexOf(position) + 1, element);
 		array.add(indexOf(position) + 1, arrayPosition);
@@ -88,7 +90,7 @@ public class ArraySequence<E> implements Sequence<E> {
 
 	@Override public void addFirst(E element) {
 		if (size() == capacity)
-			throw new FullSequenceException("Sequence is full");
+			throw new FullSequenceException();
 		ArrayPosition<E> arrayPosition = new ArrayPosition<>(0, element);
 		array.add(0, arrayPosition);
 		for (int i = 0; i < size(); i++) {
@@ -98,7 +100,7 @@ public class ArraySequence<E> implements Sequence<E> {
 
 	@Override public void addLast(E element) {
 		if (size() == capacity)
-			throw new FullSequenceException("Sequence is full");
+			throw new FullSequenceException();
 		array.add(size(), new ArrayPosition<>(size(), element));
 	}
 
@@ -119,33 +121,28 @@ public class ArraySequence<E> implements Sequence<E> {
 		return element;
 	}
 
-	@Override
-	public Position<E> first () throws EmptyListException {
+	@Override public Position<E> first() throws EmptyListException {
 		if (isEmpty())
 			throw new EmptyListException("The sequence is empty");
 		return array.get(0);
 	}
 
-	@Override
-	public Position<E> last () throws EmptyListException {
+	@Override public Position<E> last() throws EmptyListException {
 		if (isEmpty())
 			throw new EmptyListException("The sequence is empty");
 		return array.get(size() - 1);
 	}
 
-	@Override
-	public Position<E> prev (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> prev(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		return array.get(indexOf(checkPosition(position)) - 1);
 	}
 
-	@Override
-	public Position<E> next (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> next(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		return array.get(indexOf(checkPosition(position)) + 1);
 	}
 
-	@Override
-	public E remove (int index) throws IndexOutOfBoundsException {
-		checkIndex(index);
+	@Override public E remove(int index) throws IndexOutOfBoundsException {
+		checkIndex(index, size());
 		try {
 			if (index == 0)
 				return removeFirst();
@@ -158,61 +155,64 @@ public class ArraySequence<E> implements Sequence<E> {
 		}
 	}
 
-	@Override
-	public void add (int index, E element) throws IndexOutOfBoundsException {
+	@Override public void add(int index, E element) throws IndexOutOfBoundsException {
 		if (size() == capacity)
-			throw new FullSequenceException("Sequence is full");
-		checkIndex(index);
+			throw new FullSequenceException();
+		checkIndex(index, size());
 		addBefore(atIndex(index), element);
 	}
 
-	@Override
-	public E set (int index, E element) throws IndexOutOfBoundsException {
-		checkIndex(index);
+	@Override public E set(int index, E element) throws IndexOutOfBoundsException {
+		checkIndex(index, size());
 		return set(atIndex(index), element);
 	}
 
-	@Override
-	public E get (int index) throws IndexOutOfBoundsException {
-		checkIndex(index);
+	@Override public E get(int index) throws IndexOutOfBoundsException {
+		checkIndex(index, size());
 		return array.get(index).getElement();
 	}
 
-	@Override
-	public E getFirst () throws EmptySequenceException {
+	@Override public E getFirst() throws EmptySequenceException {
 		if (isEmpty())
 			throw new EmptySequenceException();
 		return array.get(0).getElement();
 	}
 
-	@Override
-	public E getLast () throws EmptySequenceException {
+	@Override public E getLast() throws EmptySequenceException {
 		if (isEmpty())
 			throw new EmptySequenceException();
 		return array.get(size() - 1).getElement();
 	}
 
-	@Override
-	public E removeFirst () throws EmptySequenceException {
+	@Override public E removeFirst() throws EmptySequenceException {
 		if (isEmpty())
 			throw new EmptySequenceException();
-		return remove(0);
+		return remove(atIndex(0));
 	}
 
-	@Override
-	public E removeLast () throws EmptySequenceException {
+	@Override public E removeLast() throws EmptySequenceException {
 		if (isEmpty())
 			throw new EmptySequenceException();
-		return remove(size() - 1);
+		return remove(atIndex(size() - 1));
 	}
 
-	@Override
-	public Iterator<E> iterator () {
+	@Override public String toString() {
+		String string = "[";
+		if (!isEmpty()) {
+			string += array.get(0).getElement();
+			for (int i = 1; i < array.size() && array.get(i) != null && i < size(); i++) {
+				string += ", " + array.get(i).getElement();
+			}
+		}
+		string += "]";
+		return string;
+	}
+
+	@Override public Iterator<E> iterator() {
 		return new ElementIterator<>(this);
 	}
 
-	@Override
-	public Iterable<Position<E>> getPositions () {
+	@Override public Iterable<Position<E>> getPositions() {
 		PositionList<Position<E>> list = new NodePositionList<>();
 		for (int i = 0; i < array.size() - 1; i++) {
 			list.addLast(array.get(i));

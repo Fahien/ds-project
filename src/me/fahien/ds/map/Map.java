@@ -4,12 +4,12 @@ import me.fahien.ds.exception.InvalidKeyException;
 import me.fahien.ds.util.composition.IEntry;
 
 public interface Map<Key, Value> {
-	public int size ();
-	public boolean isEmpty ();
-	public Value put (Key key, Value value) throws InvalidKeyException;
-	public Value get (Key key) throws InvalidKeyException;
-	public Value remove (Key key) throws InvalidKeyException;
-	public Iterable<Key> keys ();
-	public Iterable<Value> values ();
-	public Iterable<IEntry<Key, Value>> entries ();
+	int size();
+	boolean isEmpty();
+	Value put(Key key, Value value) throws InvalidKeyException;
+	Value get(Key key) throws InvalidKeyException;
+	Value remove(Key key) throws InvalidKeyException;
+	Iterable<Key> keys();
+	Iterable<Value> values();
+	Iterable<IEntry<Key, Value>> entries();
 }

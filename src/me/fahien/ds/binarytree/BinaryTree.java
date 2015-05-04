@@ -6,8 +6,8 @@ import me.fahien.ds.tree.Tree;
 import me.fahien.ds.util.position.Position;
 
 public interface BinaryTree<E> extends Tree<E> {
-	public Position<E> getLeft (Position<E> position) throws InvalidPositionException, BoundaryViolationException;
-	public Position<E> getRight (Position<E> position) throws InvalidPositionException, BoundaryViolationException;
-	public boolean hasLeft (Position<E> position) throws InvalidPositionException;
-	public boolean hasRight (Position<E> position) throws InvalidPositionException;
+	Position<E> getLeft(Position<E> position) throws InvalidPositionException, BoundaryViolationException;
+	Position<E> getRight(Position<E> position) throws InvalidPositionException, BoundaryViolationException;
+	boolean hasLeft(Position<E> position) throws InvalidPositionException;
+	boolean hasRight(Position<E> position) throws InvalidPositionException;
 }

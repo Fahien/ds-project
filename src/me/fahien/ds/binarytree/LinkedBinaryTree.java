@@ -20,7 +20,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		size = 0;
 	}
 
-	protected BTPosition<E> checkPosition (Position<E> position) throws InvalidPositionException{
+	protected BTPosition<E> checkPosition(Position<E> position) throws InvalidPositionException{
 		if (position == null)
 			throw new InvalidPositionException("The position is null");
 		try {
@@ -84,7 +84,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 
 	@Override
-	public boolean isInternal (Position<E> position) throws InvalidPositionException {
+	public boolean isInternal(Position<E> position) throws InvalidPositionException {
 		BTPosition<E> node = checkPosition(position);
 		return node != root && hasLeft(position) && hasRight(position);
 	}
@@ -127,7 +127,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return checkPosition(position).getRight() != null;
 	}
 
-	public Position<E> addRoot(E element)  throws NonEmptyTreeException {
+	public Position<E> addRoot(E element) throws NonEmptyTreeException {
 		if (size != 0 && root != null)
 			throw new NonEmptyTreeException("The binary tree is not empty");
 		root = new BTNode<>(element, null, null, null);

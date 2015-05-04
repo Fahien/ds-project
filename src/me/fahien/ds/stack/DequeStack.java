@@ -16,11 +16,17 @@ public class DequeStack<E> implements Stack<E> {
 		deque = new NodeDeque<>();
 	}
 
-	@Override public int size() { return deque.size(); }
+	@Override public int size() {
+		return deque.size();
+	}
 
-	@Override public boolean isEmpty() { return deque.isEmpty(); }
+	@Override public boolean isEmpty() {
+		return deque.isEmpty();
+	}
 
-	@Override public void push(E element) { deque.addLast(element); }
+	@Override public void push(E element) {
+		deque.addLast(element);
+	}
 
 	@Override public E top() throws EmptyStackException {
 		try {

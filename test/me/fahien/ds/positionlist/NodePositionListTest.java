@@ -41,7 +41,8 @@ public class NodePositionListTest {
 			assertEquals(list.toString(), "[4, 8, 7, 4]");
 			((NodePositionList)list).reverse();
 			list.addAfter(list.prev(list.next(list.first())), 3);
-			assertEquals(list.toString(), "[4, 3, 7, 8, 4]");
+			list.addAfter(list.prev(list.next(list.first())), 2);
+			assertEquals(list.toString(), "[4, 2, 3, 7, 8, 4]");
 		} catch (EmptyListException e) {
 			logger.warning(e.getMessage());
 		}

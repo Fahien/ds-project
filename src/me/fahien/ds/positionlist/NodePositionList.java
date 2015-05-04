@@ -20,10 +20,12 @@ public class NodePositionList<E> implements PositionList<E> {
 		header.setNext(trailer);
 	}
 
+	/** Returns the header */
 	protected DLNode<E> getHeader() {
 		return header;
 	}
 
+	/** Returns the trailer */
 	protected DLNode<E> getTrailer() {
 		return trailer;
 	}

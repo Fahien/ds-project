@@ -1,6 +1,5 @@
 package me.fahien.ds.sequence;
 
-import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
@@ -10,13 +9,14 @@ import me.fahien.ds.util.position.Position;
 
 public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> {
 
-	protected void checkIndex (int index) throws IndexOutOfBoundsException {
-		if (index < 0 || index >= size())
-			throw new IndexOutOfBoundsException("Illegal index of "+ index);
+	/** Checks whether the given index is in range [0, n - 1] */
+	protected void checkIndex(int index, int n) throws IndexOutOfBoundsException {
+		if (index < 0 || index >= n)
+			throw new IndexOutOfBoundsException("Illegal index of " + index);
 	}
 
 	@Override public E remove(int index) throws IndexOutOfBoundsException {
-		checkIndex(index);
+		checkIndex(index, size());
 		return remove(atIndex(index));
 	}
 
@@ -24,25 +24,25 @@ public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> 
 		if (index == size()) {
 			addLast(element);
 		} else {
-			checkIndex(index);
+			checkIndex(index, size());
 			addBefore(atIndex(index), element);
 		}
 	}
 
 	@Override public E set(int index, E element) throws IndexOutOfBoundsException {
-		checkIndex(index);
+		checkIndex(index, size());
 		return set(atIndex(index), element);
 	}
 
 	@Override public E get(int index) throws IndexOutOfBoundsException {
-		checkIndex(index);
+		checkIndex(index, size());
 		return atIndex(index).getElement();
 	}
 
-	@Override public Position<E> atIndex(int index) throws BoundaryViolationException {
-		checkIndex(index);
+	@Override public Position<E> atIndex(int index) throws IndexOutOfBoundsException {
+		checkIndex(index, size());
 		DLNode<E> node;
-		if (index <= size() /2) {
+		if (index <= size() / 2) {
 			node = getHeader().getNext();
 			for (int i = 0; i < index; i++) {
 				node = node.getNext();
@@ -94,5 +94,18 @@ public class NodeSequence<E> extends NodePositionList<E> implements Sequence<E> 
 		if (isEmpty())
 			throw new EmptySequenceException();
 		return remove(getTrailer().getPrev());
+	}
+
+	@Override public String toString() {
+		String string = "[";
+		if (!isEmpty()) {
+			DLNode<E> node = getHeader().getNext();
+			string += node.getElement();
+			for (node = node.getNext(); node != getTrailer(); node = node.getNext()) {
+				string += ", " + node.getElement();
+			}
+		}
+		string += "]";
+		return string;
 	}
 }

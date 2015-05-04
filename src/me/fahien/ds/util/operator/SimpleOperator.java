@@ -35,7 +35,7 @@ public enum SimpleOperator implements Operator {
 	private Character symbol;
 	private int precedence;
 
-	private SimpleOperator(Character symbol, int precedence) {
+	SimpleOperator(Character symbol, int precedence) {
 		this.symbol = symbol;
 		this.precedence = precedence;
 	}

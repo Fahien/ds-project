@@ -54,10 +54,12 @@ public class NodeDeque<E> implements Deque<E> {
 		DLNode<E> node = header.getNext();
 		header.setNext(node.getNext());
 		node.getNext().setPrev(header);
+		E element = node.getElement();
+		node.setElement(null);
 		node.setNext(null);
 		node.setPrev(null);
 		size--;
-		return node.getElement();
+		return element;
 	}
 
 	@Override public E removeLast() throws EmptyDequeException {
@@ -67,10 +69,12 @@ public class NodeDeque<E> implements Deque<E> {
 		DLNode<E> node = trailer.getPrev();
 		trailer.setPrev(node.getPrev());
 		node.getPrev().setNext(trailer);
+		E element = node.getElement();
+		node.setElement(null);
 		node.setNext(null);
 		node.setPrev(null);
 		size--;
-		return node.getElement();
+		return element;
 	}
 
 	@Override public String toString() {
