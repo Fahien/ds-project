@@ -67,7 +67,7 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	@Override
 	public IEntry<Key, Value> remove (IEntry<Key, Value> entry) throws InvalidEntryException {
 		checkEntry(entry);
-		for(Position<IEntry<Key, Value>> position : entries.getPositions()) {
+		for(Position<IEntry<Key, Value>> position : entries.positions()) {
 			if (entry.equals(position.getElement())) {
 				return entries.remove(position);
 			}

@@ -2,7 +2,7 @@ package me.fahien.ds.list;
 
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 
-public interface List<E> {
+public interface List<E> extends Iterable<E> {
 	/** Removes and returns the element at that index,
 	 * shifting subsequent elements earlier */
 	E remove(int index) throws IndexOutOfBoundsException;

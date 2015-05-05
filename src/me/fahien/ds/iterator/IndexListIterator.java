@@ -3,28 +3,28 @@ package me.fahien.ds.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import me.fahien.ds.list.ArrayList;
+
 public class IndexListIterator<E> implements Iterator<E> {
-	private E[] array;
+	private ArrayList<E> array;
 	private int index;
 
-	public IndexListIterator (E[] array) {
+	public IndexListIterator(ArrayList<E> array) {
 		this.array = array;
+		index = 0;
 	}
 
-	@Override
-	public boolean hasNext () {
-		return index < array.length - 1;
+	@Override public boolean hasNext() {
+		return index < array.size();
 	}
 
-	@Override
-	public E next () throws NoSuchElementException {
+	@Override public E next() throws NoSuchElementException {
 		if (!hasNext())
 			throw new NoSuchElementException("No such element");
-		return array[index++];
+		return array.get(index++);
 	}
 
-	@Override
-	public void remove () throws UnsupportedOperationException {
+	@Override public void remove() throws UnsupportedOperationException {
 		throw new UnsupportedOperationException("Remove");
 	}
 }

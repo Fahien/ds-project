@@ -153,15 +153,16 @@ public class NodePositionList<E> implements PositionList<E> {
 		}
 	}
 
+	/** Returns an iterator of the elements stored in the list. */
 	@Override public Iterator<E> iterator() {
 		return new ElementIterator<>(this);
 	}
 
-	@Override public Iterable<Position<E>> getPositions() {
+	@Override public Iterable<Position<E>> positions() {
 		PositionList<Position<E>> list = new NodePositionList<>();
 		if(!isEmpty()) {
 			Position<E> position = first();
-			for (int i = 0; i < size - 1; i++) {
+			for (int i = 0; i < size() - 1; i++) {
 				list.addLast(position);
 				position = next(position);
 			}

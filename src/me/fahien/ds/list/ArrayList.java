@@ -1,6 +1,9 @@
 package me.fahien.ds.list;
 
+import java.util.Iterator;
+
 import me.fahien.ds.exception.IndexOutOfBoundsException;
+import me.fahien.ds.iterator.IndexListIterator;
 
 public class ArrayList<E> implements List<E> {
 	private static final int CAPACITY = 1024;
@@ -82,5 +85,9 @@ public class ArrayList<E> implements List<E> {
 		}
 		string += "]";
 		return string;
+	}
+
+	@Override public Iterator<E> iterator() {
+		return new IndexListIterator<>(this);
 	}
 }

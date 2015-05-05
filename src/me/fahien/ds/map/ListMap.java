@@ -31,7 +31,7 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 	@Override
 	public Value put (Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		for(Position<IEntry<Key, Value>> position : list.getPositions()) {
+		for(Position<IEntry<Key, Value>> position : list.positions()) {
 			IEntry<Key, Value> entry = position.getElement();
 			if (entry.getKey().equals(key)) {
 				Value temp = entry.getValue();
@@ -56,7 +56,7 @@ public class ListMap<Key, Value> implements Map<Key, Value> {
 	@Override
 	public Value remove (Key key) throws InvalidKeyException {
 		checkKey(key);
-		for(Position<IEntry<Key, Value>> position : list.getPositions()) {
+		for(Position<IEntry<Key, Value>> position : list.positions()) {
 			IEntry<Key, Value> entry = position.getElement();
 			if (entry.getKey().equals(key)) {
 				Value temp = entry.getValue();

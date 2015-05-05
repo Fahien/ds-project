@@ -44,5 +44,6 @@ public interface PositionList<E> extends Iterable<E> {
 	/** Returns the Position immediately after this position */
 	Position<E> next(Position<E> position) throws InvalidPositionException, BoundaryViolationException;
 
-	Iterable<Position<E>> getPositions();
+	/** Returns an iterable representation of the list's positions. */
+	Iterable<Position<E>> positions();
 }
