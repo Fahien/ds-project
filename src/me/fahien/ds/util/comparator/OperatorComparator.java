@@ -6,8 +6,8 @@ import me.fahien.ds.util.operator.SimpleOperator;
 
 /** Comparator for operators
  * @author Fahien */
-public class OperatorComparator implements Comparator<SimpleOperator> {
-	@Override public int compare(SimpleOperator simpleOperator1, SimpleOperator simpleOperator2) {
-		return simpleOperator1.compareWith(simpleOperator2);
+public class OperatorComparator<E extends SimpleOperator> implements Comparator<E> {
+	@Override public int compare(E a, E b) {
+		return a.compareWith(b);
 	}
 }

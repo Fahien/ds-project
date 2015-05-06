@@ -1,7 +1,7 @@
 package me.fahien.ds.map;
 
 import me.fahien.ds.exception.InvalidKeyException;
-import me.fahien.ds.util.composition.IEntry;
+import me.fahien.ds.util.composition.Entry;
 
 public interface Map<Key, Value> {
 	int size();
@@ -11,5 +11,5 @@ public interface Map<Key, Value> {
 	Value remove(Key key) throws InvalidKeyException;
 	Iterable<Key> keys();
 	Iterable<Value> values();
-	Iterable<IEntry<Key, Value>> entries();
+	Iterable<Entry<Key, Value>> entries();
 }

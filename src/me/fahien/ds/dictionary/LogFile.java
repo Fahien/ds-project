@@ -4,12 +4,12 @@ import me.fahien.ds.exception.InvalidEntryException;
 import me.fahien.ds.exception.InvalidKeyException;
 import me.fahien.ds.positionlist.NodePositionList;
 import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.util.composition.PQEntry;
 import me.fahien.ds.util.composition.Entry;
-import me.fahien.ds.util.composition.IEntry;
 import me.fahien.ds.util.position.Position;
 
 public class LogFile<Key, Value> implements Dictionary<Key, Value> {
-	private PositionList<IEntry<Key, Value>> entries;
+	private PositionList<Entry<Key, Value>> entries;
 
 	public LogFile () {
 		entries = new NodePositionList<>();
@@ -19,10 +19,10 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 		if (key == null) throw new InvalidKeyException("Invalid key");
 	}
 
-	protected Entry<Key, Value> checkEntry (IEntry<Key, Value> entry) throws InvalidEntryException {
-		if (entry == null || !(entry instanceof Entry<?,?>)) 
+	protected PQEntry<Key, Value> checkEntry (Entry<Key, Value> entry) throws InvalidEntryException {
+		if (entry == null || !(entry instanceof PQEntry<?,?>))
 			throw new InvalidEntryException("Invalid entry");
-		return (Entry<Key, Value>) entry;
+		return (PQEntry<Key, Value>) entry;
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	}
 
 	@Override
-	public IEntry<Key, Value> find (Key key) throws InvalidKeyException {
+	public Entry<Key, Value> find (Key key) throws InvalidKeyException {
 		checkKey(key);
-		for (IEntry<Key, Value> entry : entries) {
+		for (Entry<Key, Value> entry : entries) {
 			if (entry.getKey().equals(key))
 				return entry;
 		}
@@ -46,10 +46,10 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	}
 
 	@Override
-	public Iterable<IEntry<Key, Value>> findAll (Key key) throws InvalidKeyException {
+	public Iterable<Entry<Key, Value>> findAll (Key key) throws InvalidKeyException {
 		checkKey(key);
-		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<>();
-		for (IEntry<Key, Value> entry : entries) {
+		PositionList<Entry<Key, Value>> iterable = new NodePositionList<>();
+		for (Entry<Key, Value> entry : entries) {
 			if (entry.getKey().equals(key))
 				iterable.addLast(entry);
 		}
@@ -57,17 +57,17 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	}
 
 	@Override
-	public IEntry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
+	public Entry<Key, Value> insert (Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		IEntry<Key, Value> entry = new Entry<>(key, value);
+		Entry<Key, Value> entry = new PQEntry<>(key, value);
 		entries.addLast(entry);
 		return entry;
 	}
 
 	@Override
-	public IEntry<Key, Value> remove (IEntry<Key, Value> entry) throws InvalidEntryException {
+	public Entry<Key, Value> remove (Entry<Key, Value> entry) throws InvalidEntryException {
 		checkEntry(entry);
-		for(Position<IEntry<Key, Value>> position : entries.positions()) {
+		for(Position<Entry<Key, Value>> position : entries.positions()) {
 			if (entry.equals(position.getElement())) {
 				return entries.remove(position);
 			}
@@ -76,10 +76,10 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 	}
 
 	@Override
-	public Iterable<IEntry<Key, Value>> getEntries () {
-		PositionList<IEntry<Key, Value>> iterable = new NodePositionList<>();
+	public Iterable<Entry<Key, Value>> getEntries () {
+		PositionList<Entry<Key, Value>> iterable = new NodePositionList<>();
 		if (!entries.isEmpty()) {
-			for (Position<IEntry<Key, Value>> current = entries.first(); current != null; current = entries.next(current)) {
+			for (Position<Entry<Key, Value>> current = entries.first(); current != null; current = entries.next(current)) {
 				iterable.addLast(current.getElement());
 			}
 		}

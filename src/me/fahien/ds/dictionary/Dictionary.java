@@ -2,14 +2,14 @@ package me.fahien.ds.dictionary;
 
 import me.fahien.ds.exception.InvalidEntryException;
 import me.fahien.ds.exception.InvalidKeyException;
-import me.fahien.ds.util.composition.IEntry;
+import me.fahien.ds.util.composition.Entry;
 
 public interface Dictionary<Key, Value> {
 	int size();
 	boolean isEmpty();
-	IEntry<Key, Value> find(Key key) throws InvalidKeyException;
-	Iterable<IEntry<Key, Value>> findAll(Key key) throws InvalidKeyException;
-	IEntry<Key, Value> insert(Key key, Value value) throws InvalidKeyException;
-	IEntry<Key, Value> remove(IEntry<Key, Value> entry) throws InvalidEntryException;
-	Iterable<IEntry<Key, Value>> getEntries();
+	Entry<Key, Value> find(Key key) throws InvalidKeyException;
+	Iterable<Entry<Key, Value>> findAll(Key key) throws InvalidKeyException;
+	Entry<Key, Value> insert(Key key, Value value) throws InvalidKeyException;
+	Entry<Key, Value> remove(Entry<Key, Value> entry) throws InvalidEntryException;
+	Iterable<Entry<Key, Value>> getEntries();
 }

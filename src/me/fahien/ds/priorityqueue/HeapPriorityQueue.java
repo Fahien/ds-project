@@ -8,12 +8,12 @@ import me.fahien.ds.exception.EmptyPriorityQueueException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidKeyException;
 import me.fahien.ds.util.comparator.DefaultComparator;
-import me.fahien.ds.util.composition.IEntry;
 import me.fahien.ds.util.composition.Entry;
+import me.fahien.ds.util.composition.PQEntry;
 import me.fahien.ds.util.position.Position;
 
 public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> {
-	protected CompleteBinaryTree<IEntry<Key, Value>> heap;
+	protected CompleteBinaryTree<Entry<Key, Value>> heap;
 	protected Comparator<Key> comparator;
 
 	public HeapPriorityQueue() {
@@ -31,7 +31,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		this.comparator = comparator;
 		for (int i = 0; i < keys.length || i < values.length; i++) {
 			checkKey(keys[i]);
-			IEntry<Key, Value> entry = new Entry<>(keys[i], values[i]);
+			Entry<Key, Value> entry = new PQEntry<>(keys[i], values[i]);
 			upHeap(heap.add(entry));
 		}
 	}
@@ -44,9 +44,9 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	protected void downHeap(Position<IEntry<Key, Value>> root) {
+	protected void downHeap(Position<Entry<Key, Value>> root) {
 		while(heap.isInternal(root)) {
-			Position<IEntry<Key, Value>> smallestChild;
+			Position<Entry<Key, Value>> smallestChild;
 			if(!heap.hasRight(root)) {
 				smallestChild = heap.getLeft(root);
 			}
@@ -62,8 +62,8 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	protected void upHeap (Position<IEntry<Key, Value>> position) {
-		Position<IEntry<Key, Value>> parent;
+	protected void upHeap (Position<Entry<Key, Value>> position) {
+		Position<Entry<Key, Value>> parent;
 		while(!heap.isRoot(position)) {
 			parent = heap.parentOf(position);
 			if (comparator.compare(parent.getElement().getKey(), position.getElement().getKey()) <= 0)
@@ -73,8 +73,8 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	protected void swap(Position<IEntry<Key, Value>> positionX, Position<IEntry<Key, Value>> positionY) {
-		IEntry<Key, Value> temp = positionX.getElement();
+	protected void swap(Position<Entry<Key, Value>> positionX, Position<Entry<Key, Value>> positionY) {
+		Entry<Key, Value> temp = positionX.getElement();
 		heap.replace(positionX, positionY.getElement());
 		heap.replace(positionY, temp);
 	}
@@ -89,7 +89,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		return heap.size() == 0;
 	}
 
-	@Override public IEntry<Key, Value> min() throws EmptyPriorityQueueException {
+	@Override public Entry<Key, Value> min() throws EmptyPriorityQueueException {
 		if (isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		try {
@@ -99,17 +99,17 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		}
 	}
 
-	@Override public IEntry<Key, Value> insert(Key key, Value value) throws InvalidKeyException {
+	@Override public Entry<Key, Value> insert(Key key, Value value) throws InvalidKeyException {
 		checkKey(key);
-		IEntry<Key, Value> entry = new Entry<>(key, value);
+		Entry<Key, Value> entry = new PQEntry<>(key, value);
 		upHeap(heap.add(entry));
 		return entry;
 	}
 
-	@Override public IEntry<Key, Value> removeMin() throws EmptyPriorityQueueException {
+	@Override public Entry<Key, Value> removeMin() throws EmptyPriorityQueueException {
 		if (isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
-		IEntry<Key, Value> min;
+		Entry<Key, Value> min;
 		try {
 			min = heap.getRoot().getElement();
 			if (size() == 1)
