@@ -65,7 +65,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 	protected void upHeap (Position<Entry<Key, Value>> position) {
 		Position<Entry<Key, Value>> parent;
 		while(!heap.isRoot(position)) {
-			parent = heap.parentOf(position);
+			parent = heap.parent(position);
 			if (comparator.compare(parent.getElement().getKey(), position.getElement().getKey()) <= 0)
 				break;
 			swap (parent, position);
@@ -93,7 +93,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		if (isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		try {
-			return heap.getRoot().getElement();
+			return heap.root().getElement();
 		} catch (EmptyTreeException e) {
 			throw new EmptyPriorityQueueException("The heap is empty");
 		}
@@ -111,12 +111,12 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		Entry<Key, Value> min;
 		try {
-			min = heap.getRoot().getElement();
+			min = heap.root().getElement();
 			if (size() == 1)
 				heap.remove();
 			else {
-				heap.replace(heap.getRoot(), heap.remove());
-				downHeap(heap.getRoot());
+				heap.replace(heap.root(), heap.remove());
+				downHeap(heap.root());
 			}
 		} catch (EmptyTreeException e) {
 			throw new EmptyPriorityQueueException("The heap is empty");

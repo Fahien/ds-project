@@ -1,15 +1,20 @@
 package me.fahien.ds.util.position;
 
+import me.fahien.ds.positionlist.NodePositionList;
 import me.fahien.ds.positionlist.PositionList;
 
 public class TreeNode<E> implements TreePosition<E> {
 	private E element;
 	private TreePosition<E> parent;
-	private PositionList<Position<E>> children;
+	private PositionList<Position<E>> children = new NodePositionList<>();
 
-	public TreeNode(E element, TreePosition<E> parent, PositionList<Position<E>> children) {
+	public TreeNode(E element, TreePosition<E> parent) {
 		this.element = element;
 		this.parent = parent;
+	}
+
+	public TreeNode(E element, TreePosition<E> parent, PositionList<Position<E>> children) {
+		this(element, parent);
 		this.children = children;
 	}
 
@@ -31,9 +36,5 @@ public class TreeNode<E> implements TreePosition<E> {
 
 	@Override public TreePosition<E> getParent() {
 		return parent;
-	}
-
-	@Override public void setParent(TreePosition<E> parent) {
-		this.parent = parent;
 	}
 }

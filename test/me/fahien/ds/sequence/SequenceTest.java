@@ -15,70 +15,73 @@ import static org.testng.Assert.assertTrue;
 public class SequenceTest {
 	private static final Logger logger = Logger.getLogger(SequenceTest.class.getName());
 
-	/** Exercise 1 */
-	private boolean search(Sequence<Object> sequence, Object element) {
-		Object temp;
-		try {
-			temp = sequence.removeFirst();
-			if (temp.equals(element)) {
-				sequence.addFirst(temp);
-				return true;
-			}
-			else {
-				boolean result = search(sequence, element);
-				sequence.addFirst(temp);
-				return result;
-			}
-		} catch (EmptySequenceException e) {
-			return false;
-		}
-	}
-
-	/** Exercise 2 */
-	private void reverse(Sequence<Object> sequence) {
-		if (sequence.size() > 1) {
+	private class Command<T> {
+		/** Exercise 1 */
+		public boolean search(Sequence<T> sequence, T element) {
+			T temp;
 			try {
-				Object temp = sequence.removeFirst();
-				reverse(sequence);
-				sequence.addLast(temp);
+				temp = sequence.removeFirst();
+				if (temp.equals(element)) {
+					sequence.addFirst(temp);
+					return true;
+				}
+				else {
+					boolean result = search(sequence, element);
+					sequence.addFirst(temp);
+					return result;
+				}
 			} catch (EmptySequenceException e) {
-				logger.warning(e.getMessage());
+				return false;
+			}
+		}
+
+		/** Exercise 2 */
+		private void reverse(Sequence<T> sequence) {
+			if (sequence.size() > 1) {
+				try {
+					T temp = sequence.removeFirst();
+					reverse(sequence);
+					sequence.addLast(temp);
+				} catch (EmptySequenceException e) {
+					logger.warning(e.getMessage());
+				}
 			}
 		}
 	}
 
 	@Test public void testSearchOnNode() {
-		Sequence<Object> sequence = new NodeSequence<>();
+		Sequence<Integer> sequence = new NodeSequence<>();
 		sequence.addFirst(3);
 		sequence.set(sequence.first(), 4);
 		try {
-			assertEquals(4, sequence.getFirst());
+			assertEquals(sequence.getFirst(), new Integer(4));
 			assertEquals(sequence.getFirst(), sequence.getLast());
 			sequence.addLast(8);
-			assertEquals(8, sequence.getLast());
+			assertEquals(sequence.getLast(), new Integer(8));
 			sequence.addLast(9);
-			assertEquals(9, sequence.getLast());
+			assertEquals(sequence.getLast(), new Integer(9));
 			sequence.addFirst(1);
-			assertEquals(1, sequence.getFirst());
-			assertEquals(9, sequence.getLast());
+			assertEquals(sequence.getFirst(), new Integer(1));
+			assertEquals(sequence.getLast(), new Integer(9));
 			assertFalse(sequence.isEmpty());
 			sequence.addFirst(2);
-			assertEquals(9, sequence.removeLast());
+			assertEquals(sequence.removeLast(), new Integer(9));
 			sequence.addLast(7);
-			assertEquals(2, sequence.getFirst());
-			assertEquals(7, sequence.getLast());
+			assertEquals(sequence.getFirst(), new Integer(2));
+			assertEquals(sequence.getLast(), new Integer(7));
 			sequence.addLast(4);
-			assertEquals(6, sequence.size());
-			assertEquals(2, sequence.removeFirst());
-			assertEquals(1, sequence.removeFirst());
+			assertEquals(sequence.size(), 6);
+			assertEquals(sequence.removeFirst(), new Integer(2));
+			assertEquals(sequence.removeFirst(), new Integer(1));
 			assertEquals(sequence.toString(), "[4, 8, 7, 4]");
 
-			reverse(sequence);
+			Command<Integer> command = new Command<>();
+			command.reverse(sequence);
 			sequence.addAfter(sequence.prev(sequence.next(sequence.first())), 3);
 			assertEquals(sequence.toString(), "[4, 3, 7, 8, 4]");
 
-			assertTrue(search(sequence, 8));
-			assertFalse(search(sequence, 2));
+			assertTrue(command.search(sequence, 8));
+			assertFalse(command.search(sequence, 2));
 			assertEquals(5, sequence.size());
 		} catch (EmptySequenceException e) {
 			logger.warning(e.getMessage());
@@ -91,37 +94,38 @@ public class SequenceTest {
 	}
 
 	@Test public void testSearchOnArray() {
-		Sequence<Object> sequence = new ArraySequence<>(16);
+		Sequence<Integer> sequence = new ArraySequence<>(16);
 		sequence.addFirst(3);
 		sequence.set(sequence.first(), 4);
 		try {
-			assertEquals(4, sequence.getFirst());
+			assertEquals(sequence.getFirst(), new Integer(4));
 			assertEquals(sequence.getFirst(), sequence.getLast());
 			sequence.addLast(8);
-			assertEquals(8, sequence.getLast());
+			assertEquals(sequence.getLast(), new Integer(8));
 			sequence.addLast(9);
-			assertEquals(9, sequence.getLast());
+			assertEquals(sequence.getLast(), new Integer(9));
 			sequence.addFirst(1);
-			assertEquals(1, sequence.atIndex(0).getElement());
-			assertEquals(9, sequence.getLast());
+			assertEquals(sequence.getFirst(), new Integer(1));
+			assertEquals(sequence.getLast(), new Integer(9));
 			assertFalse(sequence.isEmpty());
 			sequence.addFirst(2);
-			assertEquals(9, sequence.removeLast());
+			assertEquals(sequence.removeLast(), new Integer(9));
 			sequence.addLast(7);
-			assertEquals(2, sequence.atIndex(sequence.indexOf(sequence.first())).getElement());
-			assertEquals(7, sequence.getLast());
+			assertEquals(sequence.getFirst(), new Integer(2));
+			assertEquals(sequence.getLast(), new Integer(7));
 			sequence.addLast(4);
-			assertEquals(6, sequence.size());
-			assertEquals(2, sequence.removeFirst());
-			assertEquals(1, sequence.removeFirst());
+			assertEquals(sequence.size(), 6);
+			assertEquals(sequence.removeFirst(), new Integer(2));
+			assertEquals(sequence.removeFirst(), new Integer(1));
 			assertEquals(sequence.toString(), "[4, 8, 7, 4]");
 
-			reverse(sequence);
+			Command<Integer> command = new Command<>();
+			command.reverse(sequence);
 			sequence.addAfter(sequence.prev(sequence.next(sequence.first())), 3);
 			assertEquals(sequence.toString(), "[4, 3, 7, 8, 4]");
 
-			assertTrue(search(sequence, 8));
-			assertFalse(search(sequence, 2));
+			assertTrue(command.search(sequence, 8));
+			assertFalse(command.search(sequence, 2));
 			assertEquals(5, sequence.size());
 		} catch (EmptySequenceException e) {
 			logger.warning(e.getMessage());

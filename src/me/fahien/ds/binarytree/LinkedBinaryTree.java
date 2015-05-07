@@ -46,11 +46,11 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return size == 0;
 	}
 
-	@Override public Iterable<Position<E>> getPositions() {
+	@Override public Iterable<Position<E>> positions() {
 		PositionList<Position<E>> positions = new NodePositionList<>();
 		if (size != 0)
 			try {
-				preorderPositions(getRoot(), positions);
+				preorderPositions(root(), positions);
 			} catch (InvalidPositionException | EmptyTreeException e) {
 				e.printStackTrace();
 			}
@@ -64,19 +64,19 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return temp;
 	}
 
-	@Override public Position<E> getRoot() throws EmptyTreeException {
+	@Override public Position<E> root() throws EmptyTreeException {
 		if (size == 0 && root == null)
 			throw new EmptyTreeException("The binary tree is empty");
 		return root;
 	}
 
-	@Override public Position<E> parentOf(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	@Override public Position<E> parent(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		if (position == root)
 			throw new BoundaryViolationException("The root has no parent");
 		return checkPosition(position).getParent();
 	}
 
-	@Override public Iterable<Position<E>> childrenOf(Position<E> position) throws InvalidPositionException {
+	@Override public Iterable<Position<E>> children(Position<E> position) throws InvalidPositionException {
 		PositionList<Position<E>> positionList = new NodePositionList<>();
 		if (size != 0)
 			preorderPositions(position, positionList);
@@ -100,7 +100,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
 	@Override public Iterator<E> iterator() {
 		PositionList<E> elements = new NodePositionList<>();
-		for (Position<E> position : getPositions())
+		for (Position<E> position : positions())
 			elements.addLast(position.getElement());
 		return elements.iterator();
 	}

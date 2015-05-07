@@ -70,7 +70,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 	}
 
 	@Override
-	public Iterable<Position<E>> getPositions () {
+	public Iterable<Position<E>> positions() {
 		PositionList<Position<E>> positionList = new NodePositionList<>();
 		for (int i = 1; i < tree.size(); i++) {
 			positionList.addLast(tree.get(i));
@@ -87,14 +87,14 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 	}
 
 	@Override
-	public Position<E> getRoot () throws EmptyTreeException {
+	public Position<E> root() throws EmptyTreeException {
 		if(isEmpty())
 			throw new EmptyTreeException("The complete binary tree is empty");
 		return tree.get(1);
 	}
 
 	@Override
-	public Position<E> parentOf (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	public Position<E> parent(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		BTIndexedPosition<E> indexedPosition = checkPosition(position);
 		if (isRoot(indexedPosition)) {
 			throw new BoundaryViolationException("The root has no parent");
@@ -103,7 +103,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 	}
 
 	@Override
-	public Iterable<Position<E>> childrenOf (Position<E> position) throws InvalidPositionException {
+	public Iterable<Position<E>> children(Position<E> position) throws InvalidPositionException {
 		PositionList<Position<E>> positionList = new NodePositionList<>();
 		if (size() != 0)
 			preorderPositions(position, positionList);
