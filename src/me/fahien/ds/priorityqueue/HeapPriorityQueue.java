@@ -48,12 +48,12 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		while(heap.isInternal(root)) {
 			Position<Entry<Key, Value>> smallestChild;
 			if(!heap.hasRight(root)) {
-				smallestChild = heap.getLeft(root);
+				smallestChild = heap.left(root);
 			}
-			else if (comparator.compare(heap.getLeft(root).getElement().getKey(), heap.getRight(root).getElement().getKey()) <= 0) {
-				smallestChild = heap.getLeft(root);
+			else if (comparator.compare(heap.left(root).getElement().getKey(), heap.right(root).getElement().getKey()) <= 0) {
+				smallestChild = heap.left(root);
 			} else {
-				smallestChild = heap.getRight(root);
+				smallestChild = heap.right(root);
 			}
 			if (comparator.compare(smallestChild.getElement().getKey(), root.getElement().getKey()) < 0) {
 				swap (root, smallestChild);

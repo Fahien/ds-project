@@ -15,9 +15,8 @@ import static org.testng.Assert.assertTrue;
 public class SequenceTest {
 	private static final Logger logger = Logger.getLogger(SequenceTest.class.getName());
 
-	private class Command<T> {
 		/** Exercise 1 */
-		public boolean search(Sequence<T> sequence, T element) {
+		public <T> boolean search(Sequence<T> sequence, T element) {
 			T temp;
 			try {
 				temp = sequence.removeFirst();
@@ -36,7 +35,7 @@ public class SequenceTest {
 		}
 
 		/** Exercise 2 */
-		private void reverse(Sequence<T> sequence) {
+		private <T> void reverse(Sequence<T> sequence) {
 			if (sequence.size() > 1) {
 				try {
 					T temp = sequence.removeFirst();
@@ -47,7 +46,6 @@ public class SequenceTest {
 				}
 			}
 		}
-	}
 
 	@Test public void testSearchOnNode() {
 		Sequence<Integer> sequence = new NodeSequence<>();
@@ -75,13 +73,12 @@ public class SequenceTest {
 			assertEquals(sequence.removeFirst(), new Integer(1));
 			assertEquals(sequence.toString(), "[4, 8, 7, 4]");
 
-			Command<Integer> command = new Command<>();
-			command.reverse(sequence);
+			reverse(sequence);
 			sequence.addAfter(sequence.prev(sequence.next(sequence.first())), 3);
 			assertEquals(sequence.toString(), "[4, 3, 7, 8, 4]");
 
-			assertTrue(command.search(sequence, 8));
-			assertFalse(command.search(sequence, 2));
+			assertTrue(search(sequence, 8));
+			assertFalse(search(sequence, 2));
 			assertEquals(5, sequence.size());
 		} catch (EmptySequenceException e) {
 			logger.warning(e.getMessage());
@@ -119,13 +116,12 @@ public class SequenceTest {
 			assertEquals(sequence.removeFirst(), new Integer(1));
 			assertEquals(sequence.toString(), "[4, 8, 7, 4]");
 
-			Command<Integer> command = new Command<>();
-			command.reverse(sequence);
+			reverse(sequence);
 			sequence.addAfter(sequence.prev(sequence.next(sequence.first())), 3);
 			assertEquals(sequence.toString(), "[4, 3, 7, 8, 4]");
 
-			assertTrue(command.search(sequence, 8));
-			assertFalse(command.search(sequence, 2));
+			assertTrue(search(sequence, 8));
+			assertFalse(search(sequence, 2));
 			assertEquals(5, sequence.size());
 		} catch (EmptySequenceException e) {
 			logger.warning(e.getMessage());

@@ -13,7 +13,7 @@ import me.fahien.ds.util.position.Position;
 import me.fahien.ds.util.position.TreeNode;
 import me.fahien.ds.util.position.TreePosition;
 
-public class LinkedTree<E> extends AbstractTree<E> {
+public class LinkedTree<E> implements Tree<E> {
 	private TreePosition<E> root;
 	private int size;
 
@@ -49,6 +49,10 @@ public class LinkedTree<E> extends AbstractTree<E> {
 
 	@Override public int size() {
 		return size;
+	}
+
+	@Override public boolean isEmpty() {
+		return size() == 0;
 	}
 
 	@Override public Iterable<Position<E>> positions() {

@@ -27,13 +27,13 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 	protected void preorderPositions (Position<E> position, PositionList<Position<E>> positionList) throws InvalidPositionException {
 		positionList.addLast(position);
 		if (hasLeft(position))
-			preorderPositions(getLeft(position), positionList);
+			preorderPositions(left(position), positionList);
 		if (hasRight(position))
-			preorderPositions(getRight(position), positionList);
+			preorderPositions(right(position), positionList);
 	}
 
 	@Override
-	public Position<E> getLeft (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	public Position<E> left(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		if (!hasLeft(position))
 			throw new BoundaryViolationException("The position has no left child");
 		return tree.get(checkPosition(position).getIndex() * 2);
@@ -41,7 +41,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 	}
 
 	@Override
-	public Position<E> getRight (Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+	public Position<E> right(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
 		if (!hasLeft(position))
 			throw new BoundaryViolationException("The position has no right child");
 		return tree.get(checkPosition(position).getIndex() * 2 + 1);
