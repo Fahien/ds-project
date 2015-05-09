@@ -10,13 +10,12 @@ import me.fahien.ds.util.position.Position;
 public abstract class EulerTour<E, R> {
 	protected BinaryTree<E> tree;
 
-	/** Executes the traversal */
-	public abstract R execute (BinaryTree<E> tree);
-
-	/** Initializes the traversal */
-	protected void init(BinaryTree<E> tree) {
+	public EulerTour(BinaryTree<E> tree) {
 		this.tree = tree;
 	}
+
+	/** Executes the traversal */
+	public abstract R execute();
 
 	/** Template method */
 	protected R eulerTour(Position<E> node) {

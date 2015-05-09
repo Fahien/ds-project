@@ -1,4 +1,4 @@
-package me.fahien.ds.binarytree.expression;
+package me.fahien.ds.binarytree.eulertour.expression;
 
 /** Addition operator
  * @author Fahien */

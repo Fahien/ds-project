@@ -1,4 +1,4 @@
-package me.fahien.ds.binarytree.expression;
+package me.fahien.ds.binarytree.eulertour.expression;
 
 import java.util.logging.Logger;
 
@@ -13,8 +13,11 @@ import me.fahien.ds.util.position.Position;
 public class EvaluateExpressionTour extends EulerTour<ExpressionTerm, Integer> {
 	private static final Logger logger = Logger.getLogger(EvaluateExpressionTour.class.getName());
 
-	@Override public Integer execute(BinaryTree<ExpressionTerm> tree) {
-		init(tree);
+	public EvaluateExpressionTour(BinaryTree<ExpressionTerm> tree) {
+		super(tree);
+	}
+
+	@Override public Integer execute() {
 		try {
 			return eulerTour(tree.root());
 		} catch (EmptyTreeException e) {
