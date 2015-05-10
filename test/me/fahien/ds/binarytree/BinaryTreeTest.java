@@ -2,7 +2,6 @@ package me.fahien.ds.binarytree;
 
 import org.testng.annotations.Test;
 
-
 import java.util.logging.Logger;
 
 import me.fahien.ds.exception.EmptyTreeException;
@@ -21,6 +20,8 @@ public class BinaryTreeTest {
 	@Test public void emptyTest() {
 		BinaryTree<Object> tree = new LinkedBinaryTree<>();
 		assertTrue(tree.isEmpty());
+		tree = new VectorBinaryTree<>();
+		assertTrue(tree.isEmpty());
 	}
 
 	@Test public void sizeTest() {
@@ -32,6 +33,15 @@ public class BinaryTreeTest {
 			logger.warning(e.getMessage());
 		}
 		assertEquals(tree.size(), 1);
+
+		VectorBinaryTree<Object> vectorTree = new VectorBinaryTree<>();
+		assertEquals(vectorTree.size(), 0);
+		try {
+			vectorTree.addRoot("Root");
+		} catch (NonEmptyTreeException e) {
+			logger.warning(e.getMessage());
+		}
+		assertEquals(vectorTree.size(), 1);
 	}
 
 	@Test public void replaceTest() {
@@ -46,6 +56,21 @@ public class BinaryTreeTest {
 			assertEquals(tree.root().getElement(), "Root");
 			tree.replace(tree.root(), "Node");
 			assertEquals(tree.root().getElement(), "Node");
+		} catch (EmptyTreeException e) {
+			logger.warning(e.getMessage());
+		}
+
+		VectorBinaryTree<Object> vectorTree = new VectorBinaryTree<>();
+		assertEquals(vectorTree.size(), 0);
+		try {
+			vectorTree.addRoot("Root");
+		} catch (NonEmptyTreeException e) {
+			logger.warning(e.getMessage());
+		}
+		try {
+			assertEquals(vectorTree.root().getElement(), "Root");
+			vectorTree.replace(vectorTree.root(), "Node");
+			assertEquals(vectorTree.root().getElement(), "Node");
 		} catch (EmptyTreeException e) {
 			logger.warning(e.getMessage());
 		}

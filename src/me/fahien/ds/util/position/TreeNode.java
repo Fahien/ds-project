@@ -13,11 +13,6 @@ public class TreeNode<E> implements TreePosition<E> {
 		this.parent = parent;
 	}
 
-	public TreeNode(E element, TreePosition<E> parent, PositionList<Position<E>> children) {
-		this(element, parent);
-		this.children = children;
-	}
-
 	@Override public E getElement() {
 		return element;
 	}
