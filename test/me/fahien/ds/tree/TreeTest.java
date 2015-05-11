@@ -18,6 +18,9 @@ public class TreeTest {
 	@Test public void emptyTest() {
 		Tree<Object> tree = new LinkedTree<>();
 		assertTrue(tree.isEmpty());
+
+		Tree<Object> fullTree = new FullBinaryTree<>();
+		assertTrue(fullTree.isEmpty());
 	}
 
 	@Test public void sizeTest() {
@@ -35,6 +38,21 @@ public class TreeTest {
 			logger.warning(e.getMessage());
 		}
 		assertEquals(tree.size(), 0);
+
+		FullBinaryTree<Object> fullTree = new FullBinaryTree<>();
+		assertEquals(fullTree.size(), 0);
+		try {
+			fullTree.addRoot("Root");
+		} catch (NonEmptyTreeException e) {
+			logger.warning(e.getMessage());
+		}
+		assertEquals(fullTree.size(), 1);
+		try {
+			fullTree.addChild("Child", fullTree.root());
+		} catch (EmptyTreeException e) {
+			logger.warning(e.getMessage());
+		}
+		assertEquals(fullTree.size(), 2);
 	}
 
 	@Test public void replaceTest() {
