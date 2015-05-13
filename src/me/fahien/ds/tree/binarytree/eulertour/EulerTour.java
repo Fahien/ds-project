@@ -1,6 +1,6 @@
-package me.fahien.ds.binarytree.eulertour;
+package me.fahien.ds.tree.binarytree.eulertour;
 
-import me.fahien.ds.binarytree.BinaryTree;
+import me.fahien.ds.tree.binarytree.BinaryTree;
 import me.fahien.ds.util.position.Position;
 
 /** Euler tour traversal of a tree T starts by going from the root

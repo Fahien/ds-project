@@ -1,4 +1,4 @@
-package me.fahien.ds.adaptablepriorityqueue;
+package me.fahien.ds.priorityqueue.adaptablepriorityqueue;
 
 import java.util.Comparator;
 

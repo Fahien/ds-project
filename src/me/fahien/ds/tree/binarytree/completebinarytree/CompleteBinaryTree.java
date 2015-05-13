@@ -1,6 +1,6 @@
-package me.fahien.ds.completebinarytree;
+package me.fahien.ds.tree.binarytree.completebinarytree;
 
-import me.fahien.ds.binarytree.BinaryTree;
+import me.fahien.ds.tree.binarytree.BinaryTree;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.util.position.Position;
 

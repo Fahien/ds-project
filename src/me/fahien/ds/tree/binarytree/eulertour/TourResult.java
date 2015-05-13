@@ -1,4 +1,4 @@
-package me.fahien.ds.binarytree.eulertour;
+package me.fahien.ds.tree.binarytree.eulertour;
 
 /** Maintains the results of callings to EulerTour method
  * @author Fahien */

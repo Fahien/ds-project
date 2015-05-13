@@ -1,4 +1,4 @@
-package me.fahien.ds.binarytree;
+package me.fahien.ds.tree.binarytree;
 
 import org.testng.annotations.Test;
 

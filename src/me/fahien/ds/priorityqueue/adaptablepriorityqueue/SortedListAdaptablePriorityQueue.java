@@ -1,11 +1,9 @@
-package me.fahien.ds.adaptablepriorityqueue;
+package me.fahien.ds.priorityqueue.adaptablepriorityqueue;
 
 import java.util.Comparator;
 
 import me.fahien.ds.exception.InvalidEntryException;
 import me.fahien.ds.exception.InvalidKeyException;
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.priorityqueue.SortedListPriorityQueue;
 import me.fahien.ds.util.composition.Entry;
 import me.fahien.ds.util.composition.LocationAwareEntry;

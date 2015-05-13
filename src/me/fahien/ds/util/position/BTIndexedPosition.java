@@ -12,19 +12,17 @@ public class BTIndexedPosition<E> implements Position<E> {
 		this.index = index;
 	}
 
-	/** Returns The element
-	 * @return The element*/
+	/** Returns The element */
 	@Override public E getElement() {
 		return element;
 	}
 
-	/** @param element The element */
+	/** Updates the element */
 	public void setElement(E element) {
 		this.element = element;
 	}
 
-	/** Returns the index
-	 * @return The index */
+	/** Returns the index */
 	public int getIndex() {
 		return index;
 	}

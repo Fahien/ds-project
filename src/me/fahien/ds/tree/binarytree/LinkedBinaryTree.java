@@ -1,4 +1,4 @@
-package me.fahien.ds.binarytree;
+package me.fahien.ds.tree.binarytree;
 
 import java.util.Iterator;
 import java.util.logging.Logger;

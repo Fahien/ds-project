@@ -1,4 +1,4 @@
-package me.fahien.ds.binarytree.eulertour.expression;
+package me.fahien.ds.tree.binarytree.eulertour.expression;
 
 /** Expression variable
  * @author Fahien */

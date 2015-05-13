@@ -1,15 +1,15 @@
-package me.fahien.ds.binarytree;
+package me.fahien.ds.tree.binarytree;
 
 import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
 
-import me.fahien.ds.binarytree.eulertour.expression.AdditionOperator;
-import me.fahien.ds.binarytree.eulertour.expression.EvaluateExpressionTour;
-import me.fahien.ds.binarytree.eulertour.expression.ExpressionTerm;
-import me.fahien.ds.binarytree.eulertour.expression.ExpressionVariable;
-import me.fahien.ds.binarytree.eulertour.expression.PrintExpressionTour;
-import me.fahien.ds.binarytree.eulertour.height.HeightTour;
+import me.fahien.ds.tree.binarytree.eulertour.expression.AdditionOperator;
+import me.fahien.ds.tree.binarytree.eulertour.expression.EvaluateExpressionTour;
+import me.fahien.ds.tree.binarytree.eulertour.expression.ExpressionTerm;
+import me.fahien.ds.tree.binarytree.eulertour.expression.ExpressionVariable;
+import me.fahien.ds.tree.binarytree.eulertour.expression.PrintExpressionTour;
+import me.fahien.ds.tree.binarytree.eulertour.height.HeightTour;
 import me.fahien.ds.exception.NonEmptyTreeException;
 import me.fahien.ds.positionlist.NodePositionList;
 import me.fahien.ds.positionlist.PositionList;

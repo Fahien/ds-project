@@ -2,7 +2,7 @@ package me.fahien.ds.tree;
 
 import java.util.Iterator;
 
-import me.fahien.ds.binarytree.LinkedBinaryTree;
+import me.fahien.ds.tree.binarytree.LinkedBinaryTree;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidPositionException;

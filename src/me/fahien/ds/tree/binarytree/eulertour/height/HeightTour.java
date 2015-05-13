@@ -1,10 +1,10 @@
-package me.fahien.ds.binarytree.eulertour.height;
+package me.fahien.ds.tree.binarytree.eulertour.height;
 
 import java.util.logging.Logger;
 
-import me.fahien.ds.binarytree.BinaryTree;
-import me.fahien.ds.binarytree.eulertour.EulerTour;
-import me.fahien.ds.binarytree.eulertour.TourResult;
+import me.fahien.ds.tree.binarytree.BinaryTree;
+import me.fahien.ds.tree.binarytree.eulertour.EulerTour;
+import me.fahien.ds.tree.binarytree.eulertour.TourResult;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.util.position.Position;
 
