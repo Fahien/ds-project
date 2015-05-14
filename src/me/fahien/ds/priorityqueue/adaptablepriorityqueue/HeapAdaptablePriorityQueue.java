@@ -10,6 +10,8 @@ import me.fahien.ds.util.composition.Entry;
 import me.fahien.ds.util.composition.LocationAwareEntry;
 import me.fahien.ds.util.position.Position;
 
+/** An implementation of an adaptable priority queue using an array-based heap
+ * @author Fahien */
 public class HeapAdaptablePriorityQueue<Key, Value> extends HeapPriorityQueue<Key, Value> implements AdaptablePriorityQueue<Key, Value> {
 
 	public HeapAdaptablePriorityQueue () {
@@ -20,12 +22,14 @@ public class HeapAdaptablePriorityQueue<Key, Value> extends HeapPriorityQueue<Ke
 		super(comparator);
 	}
 
+	/** Checks an entry to ensure it is location-aware */
 	protected LocationAwareEntry<Key, Value> checkEntry(Entry<Key, Value> entry) throws InvalidEntryException {
 		if (entry == null || !(entry instanceof LocationAwareEntry<?,?>)) 
 			throw new InvalidEntryException("Invalid entry");
 		return (LocationAwareEntry<Key, Value>) entry;
 	}
 
+	/** Replaces an entry */
 	protected Position<Entry<Key, Value>> replaceEntry(Position<Entry<Key, Value>> location, LocationAwareEntry<Key, Value> entry) {
 		heap.replace(location, entry);
 		Position<Entry<Key, Value>> temp = entry.getLocation();
@@ -33,6 +37,7 @@ public class HeapAdaptablePriorityQueue<Key, Value> extends HeapPriorityQueue<Ke
 		return temp;
 	}
 
+	/** Returns a location-aware entry */
 	protected LocationAwareEntry<Key, Value> getEntry(Position<Entry<Key, Value>> position) {
 		return (LocationAwareEntry<Key, Value>) position.getElement();
 	}

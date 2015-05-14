@@ -2,6 +2,7 @@ package me.fahien.ds.util.composition;
 
 import me.fahien.ds.util.position.Position;
 
+/** Extension of the PQEntry to include location information */
 public class LocationAwareEntry<Key, Value> extends PQEntry<Key, Value> implements Entry<Key, Value> {
 	private Position<Entry<Key, Value>> location;
 

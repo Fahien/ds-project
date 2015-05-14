@@ -19,6 +19,7 @@ public class SortedListAdaptablePriorityQueue<Key, Value> extends SortedListPrio
 		super(comparator);
 	}
 
+	/** Checks an entry to ensure it is location-aware */
 	protected LocationAwareEntry<Key, Value> checkEntry(Entry<Key, Value> entry) throws InvalidEntryException {
 		if (entry == null || !(entry instanceof LocationAwareEntry<?,?>)) 
 			throw new InvalidEntryException("Invalid entry");
@@ -41,11 +42,12 @@ public class SortedListAdaptablePriorityQueue<Key, Value> extends SortedListPrio
 
 	@Override public Key replaceKey(Entry<Key, Value> entry, Key key) throws InvalidEntryException {
 		checkKey(key);
-		remove(checkEntry(entry));
-		Key temp = entry.getKey();
-		((LocationAwareEntry)entry).setKey(key);
-		insertEntry(entry);
-		return temp;
+		LocationAwareEntry<Key, Value> tempEntry = checkEntry(entry);
+		remove(tempEntry);
+		Key tempKey = tempEntry.getKey();
+		tempEntry.setKey(key);
+		insertEntry(tempEntry);
+		return tempKey;
 	}
 
 	@Override public Value replaceValue(Entry<Key, Value> entry, Value value) throws InvalidEntryException {
