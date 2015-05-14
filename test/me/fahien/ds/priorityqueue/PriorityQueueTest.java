@@ -12,7 +12,6 @@ import static org.testng.Assert.assertTrue;
 /** ArrayQueue Test Case
  * @author Fahien */
 public class PriorityQueueTest {
-
 	@Test public void sortedTest() {
 		SortedListPriorityQueue<Integer, Character> queue = new SortedListPriorityQueue<>();
 		queue.insert(5, 'a');

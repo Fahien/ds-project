@@ -59,7 +59,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 				smallestChild = heap.right(root);
 			}
 			if (comparator.compare(smallestChild.getElement().getKey(), root.getElement().getKey()) < 0) {
-				swap (root, smallestChild);
+				swap(root, smallestChild);
 				root = smallestChild;
 			} else { break; }
 		}
@@ -70,7 +70,7 @@ public class HeapPriorityQueue<Key, Value> implements PriorityQueue<Key, Value> 
 		Position<Entry<Key, Value>> parent;
 		while(!heap.isRoot(position)) {
 			parent = heap.parent(position);
-			if (comparator.compare(parent.getElement().getKey(), position.getElement().getKey()) <= 0)
+			if (comparator.compare(parent.getElement().getKey(), position.getElement().getKey()) < 0)
 				break;
 			swap (parent, position);
 			position = parent;

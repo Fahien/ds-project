@@ -105,7 +105,7 @@ public class ArrayListCompleteBinaryTree<E> implements CompleteBinaryTree<E> {
 	}
 
 	@Override public boolean isInternal(Position<E> position) throws InvalidPositionException {
-		return checkPosition(position).getIndex() * 2 < size();
+		return checkPosition(position).getIndex() * 2 <= size();
 	}
 
 	@Override public boolean isExternal(Position<E> position) throws InvalidPositionException {
