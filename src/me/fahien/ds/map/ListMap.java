@@ -10,21 +10,13 @@ import me.fahien.ds.util.position.Position;
 
 /** A simple unsorted map implementation
  * @author Fahien */
-public class ListMap<Key, Value> implements Map<Key, Value> {
+public class ListMap<Key, Value> extends AbstractMap<Key, Value> {
 	private PositionList<Entry<Key, Value>> list = new NodePositionList<>();
 
 	public ListMap() {}
 
-	protected void checkKey(Key key) throws InvalidKeyException {
-		if (key == null) throw new InvalidKeyException("Invalid key");
-	}
-
 	@Override public int size() {
 		return list.size();
-	}
-
-	@Override public boolean isEmpty() {
-		return list.isEmpty();
 	}
 
 	@Override public Value put(Key key, Value value) throws InvalidKeyException {
