@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import java.util.logging.Logger;
 
 import me.fahien.ds.map.hashmap.ChainHashMap;
+import me.fahien.ds.map.hashmap.ProbeHashMap;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -40,7 +41,7 @@ public class MapTest {
 		logger.info(map.values().toString());
 	}
 
-	@Test public void hashTest() {
+	@Test public void chainTest() {
 		Map<Integer, Character> map = new ChainHashMap<>(17, 21);
 		assertTrue(map.isEmpty());
 
@@ -48,6 +49,35 @@ public class MapTest {
 		assertTrue(map.isEmpty());
 
 		map = new ChainHashMap<>();
+		assertTrue(map.isEmpty());
+
+		map.put(5, 'A');
+		map.put(7, 'B');
+		map.put(2, 'C');
+		map.put(8, 'D');
+
+		assertEquals(map.put(2, 'E'), new Character('C'));
+		assertEquals(map.get(7), new Character('B'));
+		assertNull(map.get(4));
+		assertEquals(map.size(), 4);
+		assertEquals(map.remove(5), new Character('A'));
+		assertEquals(map.remove(2), new Character('E'));
+		assertNull(map.remove(2));
+		assertFalse(map.isEmpty());
+
+		logger.info(map.entries().toString());
+		logger.info(map.keys().toString());
+		logger.info(map.values().toString());
+	}
+
+	@Test public void probeTest() {
+		Map<Integer, Character> map = new ProbeHashMap<>(17, 21);
+		assertTrue(map.isEmpty());
+
+		map = new ProbeHashMap<>(17);
+		assertTrue(map.isEmpty());
+
+		map = new ProbeHashMap<>();
 		assertTrue(map.isEmpty());
 
 		map.put(5, 'A');
