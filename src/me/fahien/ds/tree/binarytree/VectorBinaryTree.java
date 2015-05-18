@@ -24,6 +24,7 @@ public class VectorBinaryTree<E> implements BinaryTree<E> {
 		vector.add(0, null);
 	}
 
+	/** Validates the position and returns it as a BinaryTreePosition */
 	protected BTPosition<E> checkPosition(Position<E> position) throws InvalidPositionException{
 		if (position == null)
 			throw new InvalidPositionException("The position is null");

@@ -41,6 +41,10 @@ public class BTNode<E> implements BTPosition<E> {
 		return parent;
 	}
 
+	public void setParent(BTPosition<E> parent) {
+		this.parent = parent;
+	}
+
 	@Override public String toString() {
 		String string = "";
 		if (parent != null) {

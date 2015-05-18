@@ -14,13 +14,17 @@ import me.fahien.ds.util.position.BTNode;
 import me.fahien.ds.util.position.BTPosition;
 import me.fahien.ds.util.position.Position;
 
+/** LinkedBinaryTree
+ * @author Fahien */
 public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	private static Logger logger = Logger.getLogger(LinkedBinaryTree.class.getName());
-	private int size = 0;
-	private BTPosition<E> root;
+
+	protected int size = 0;
+	protected BTPosition<E> root;
 
 	public LinkedBinaryTree() {}
 
+	/** Validates the position and returns it as a TreePosition */
 	protected BTPosition<E> checkPosition(Position<E> position) throws InvalidPositionException{
 		if (position == null)
 			throw new InvalidPositionException("The position is null");
@@ -39,6 +43,15 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		if (hasRight(position)) {
 			preorderPositions(right(position), positionList);
 		}
+	}
+
+	/** Utility used when inserting a new entry at a leaf of the tree */
+	protected void expandExternal(Position<E> position, E left, E right) throws InvalidPositionException {
+		if (!isExternal(position)) {
+			throw new InvalidPositionException("The node is not a leaf");
+		}
+		insertLeft(left, position);
+		insertRight(right, position);
 	}
 
 	@Override public int size() {
@@ -77,6 +90,15 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		if (position == root)
 			throw new BoundaryViolationException("The root has no parent");
 		return checkPosition(position).getParent();
+	}
+
+	protected Position<E> sibling(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+		Position<E> parent = parent(position);
+		Position<E> leftChild = left(parent);
+		if (leftChild == position) {
+			return right(parent);
+		}
+		return leftChild;
 	}
 
 	@Override public Iterable<Position<E>> children(Position<E> position) throws InvalidPositionException {
