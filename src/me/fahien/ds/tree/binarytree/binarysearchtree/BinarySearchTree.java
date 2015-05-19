@@ -56,7 +56,7 @@ public class BinarySearchTree<Key, Value> extends LinkedBinaryTree<Entry<Key, Va
 		}
 	}
 
-	/** Returns the position in this position subtree having given key, or else the terminal leaf*/
+	/** Returns the position in this position subtree having given key, or else the terminal leaf */
 	protected Position<Entry<Key, Value>> treeSearch(Key key, Position<Entry<Key, Value>> position) {
 		if (isExternal(position)) {
 			return position;    // key not found; return the final leaf
