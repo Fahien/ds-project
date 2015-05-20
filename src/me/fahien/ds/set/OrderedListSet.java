@@ -18,13 +18,13 @@ public class OrderedListSet<E> implements Set<E> {
 	private static final Logger logger = Logger.getLogger(OrderedListSet.class.getName());
 
 	private Comparator<E> comparator;
-	private PositionList<E> list = new NodePositionList<>();
+	private NodePositionList<E> list = new NodePositionList<>();
 
 	public OrderedListSet() {
 		comparator = new DefaultComparator<>();
 	}
 
-	public OrderedListSet(PositionList<E> list) {
+	public OrderedListSet(NodePositionList<E> list) {
 		comparator = new DefaultComparator<>();
 		this.list = list;
 	}
@@ -55,9 +55,9 @@ public class OrderedListSet<E> implements Set<E> {
 
 	@Override public Set<E> union(Set<E> set) {
 		GenericMerge<E> union = new Union<>(comparator);
-		PositionList<E> temp;
+		NodePositionList<E> temp;
 		try {
-			temp = union.genericMerge(clone(), ((OrderedListSet<E>)set).clone());
+			temp = union.genericMerge(list.clone(), ((OrderedListSet<E>)set).list.clone());
 		} catch (ClassCastException e) {
 			throw new ClassCastException("The set is not the same type");
 		}
@@ -66,9 +66,9 @@ public class OrderedListSet<E> implements Set<E> {
 
 	@Override public Set<E> intersect(Set<E> set) {
 		GenericMerge<E> intersect = new Intersect<>(comparator);
-		PositionList<E> temp;
+		NodePositionList<E> temp;
 		try {
-			temp = intersect.genericMerge(clone(), ((OrderedListSet<E>)set).clone());
+			temp = intersect.genericMerge(list.clone(), ((OrderedListSet<E>) set).list.clone());
 		} catch (ClassCastException e) {
 			throw new ClassCastException("The set is not the same type");
 		}
@@ -77,9 +77,9 @@ public class OrderedListSet<E> implements Set<E> {
 
 	@Override public Set<E> subtract(Set<E> set) {
 		GenericMerge<E> subtract = new Subtract<>(comparator);
-		PositionList<E> temp;
+		NodePositionList<E> temp;
 		try {
-			temp = subtract.genericMerge(clone(), ((OrderedListSet<E>)set).clone());
+			temp = subtract.genericMerge(list.clone(), ((OrderedListSet<E>)set).list.clone());
 		} catch (ClassCastException e) {
 			throw new ClassCastException("The set is not the same type");
 		}
@@ -98,7 +98,7 @@ public class OrderedListSet<E> implements Set<E> {
 				logger.warning(e.getMessage());
 			}
 		}
-		PositionList<E> temp = new NodePositionList<>();
+		NodePositionList<E> temp = new NodePositionList<>();
 		for (Position<E> position : list.positions()) {
 			temp.addLast(position.getElement());
 		}

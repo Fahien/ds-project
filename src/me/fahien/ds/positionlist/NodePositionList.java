@@ -1,6 +1,7 @@
 package me.fahien.ds.positionlist;
 
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
@@ -10,6 +11,8 @@ import me.fahien.ds.util.position.DLNode;
 import me.fahien.ds.util.position.Position;
 
 public class NodePositionList<E> implements PositionList<E> {
+	private static final Logger logger = Logger.getLogger(NodePositionList.class.getName());
+
 	private int size;
 	private DLNode<E> header;
 	private DLNode<E> trailer;
@@ -167,6 +170,26 @@ public class NodePositionList<E> implements PositionList<E> {
 				position = next(position);
 			}
 			list.addLast(last());
+		}
+		return list;
+	}
+
+	@Override public NodePositionList<E> clone() {
+		try {
+			super.clone();
+		} catch (CloneNotSupportedException e) {
+			if (e.getMessage() != null && !e.getMessage().equals(NodePositionList.class.getName())) {
+				logger.warning(e.getMessage());
+			}
+		}
+		NodePositionList<E> list = new NodePositionList<>();
+		if(!isEmpty()) {
+			Position<E> position = first();
+			for (int i = 0; i < size() - 1; i++) {
+				list.addLast(position.getElement());
+				position = next(position);
+			}
+			list.addLast(last().getElement());
 		}
 		return list;
 	}

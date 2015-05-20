@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import me.fahien.ds.positionlist.NodePositionList;
 import me.fahien.ds.positionlist.PositionList;
-import me.fahien.ds.set.OrderedListSet;
 
 /** Generic Merge
  * @author Fahien */
@@ -15,8 +14,8 @@ public abstract class GenericMerge<E> {
 		this.comparator = comparator;
 	}
 
-	public PositionList<E> genericMerge(OrderedListSet<E> setA, OrderedListSet<E> setB) {
-		PositionList<E> list = new NodePositionList<>();
+	public NodePositionList<E> genericMerge(NodePositionList<E> setA, NodePositionList<E> setB) {
+		NodePositionList<E> list = new NodePositionList<>();
 		while(!setA.isEmpty() && !setB.isEmpty()) {
 			E a = setA.first().getElement();
 			E b = setB.first().getElement();
