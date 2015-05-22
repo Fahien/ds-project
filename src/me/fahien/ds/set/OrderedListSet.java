@@ -19,6 +19,7 @@ public class OrderedListSet<E> implements Set<E> {
 
 	private Comparator<E> comparator;
 	private NodePositionList<E> list = new NodePositionList<>();
+	private Position<Set<E>> position;
 
 	public OrderedListSet() {
 		comparator = new DefaultComparator<>();
@@ -27,10 +28,6 @@ public class OrderedListSet<E> implements Set<E> {
 	public OrderedListSet(NodePositionList<E> list) {
 		comparator = new DefaultComparator<>();
 		this.list = list;
-	}
-
-	public void add(E element) {
-		list.addLast(element);
 	}
 
 	public Position<E> first() {
@@ -55,13 +52,12 @@ public class OrderedListSet<E> implements Set<E> {
 
 	@Override public Set<E> union(Set<E> set) {
 		GenericMerge<E> union = new Union<>(comparator);
-		NodePositionList<E> temp;
 		try {
-			temp = union.genericMerge(list.clone(), ((OrderedListSet<E>)set).list.clone());
+			list = union.genericMerge(list, ((OrderedListSet<E>)set).list.clone());
 		} catch (ClassCastException e) {
 			throw new ClassCastException("The set is not the same type");
 		}
-		return new OrderedListSet<>(temp);
+		return this;
 	}
 
 	@Override public Set<E> intersect(Set<E> set) {
@@ -84,6 +80,23 @@ public class OrderedListSet<E> implements Set<E> {
 			throw new ClassCastException("The set is not the same type");
 		}
 		return new OrderedListSet<>(temp);
+	}
+
+	@Override public E fastInsert(E element) {
+		list.addLast(element);
+		return element;
+	}
+
+	@Override public Set<E> fastUnion(Set<E> b) {
+		return union(b);
+	}
+
+	@Override public Position<Set<E>> getPosition() {
+		return position;
+	}
+
+	@Override public void setPosition(Position<Set<E>> position) {
+		this.position = position;
 	}
 
 	@Override public String toString() {

@@ -11,16 +11,16 @@ public class SetTest {
 	@Test public void simpleTest() {
 		OrderedListSet<Integer> setA = new OrderedListSet<>();
 		OrderedListSet<Integer> setB = new OrderedListSet<>();
-		setA.add(1);
-		setA.add(2);
-		setA.add(4);
-		setA.add(6);
+		setA.fastInsert(1);
+		setA.fastInsert(2);
+		setA.fastInsert(4);
+		setA.fastInsert(6);
 
-		setB.add(3);
-		setB.add(4);
-		setB.add(5);
-		setB.add(7);
-		setB.add(10);
+		setB.fastInsert(3);
+		setB.fastInsert(4);
+		setB.fastInsert(5);
+		setB.fastInsert(7);
+		setB.fastInsert(10);
 
 		Set<Integer> setC = setA.union(setB);
 		assertEquals(setC.toString(), "[1, 2, 3, 4, 5, 6, 7, 10]");

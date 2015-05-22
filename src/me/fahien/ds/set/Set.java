@@ -1,5 +1,7 @@
 package me.fahien.ds.set;
 
+import me.fahien.ds.util.position.Position;
+
 /** Set
  * @author Fahien */
 public interface Set<E> {
@@ -17,4 +19,16 @@ public interface Set<E> {
 
 	/** Subtracts this set */
 	Set<E> subtract(Set<E> set);
+
+	/** Fast insert */
+	E fastInsert(E element);
+
+	/** Fast union */
+	Set<E> fastUnion(Set<E> b);
+
+	/** Returns the position */
+	Position<Set<E>> getPosition();
+
+	/** Sets the position */
+	void setPosition(Position<Set<E>> position);
 }
