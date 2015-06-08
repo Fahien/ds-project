@@ -9,6 +9,7 @@ import me.fahien.ds.util.position.Position;
 public class ElementIterator<E> implements Iterator<E> {
 	private PositionList<E> list;
 	private Position<E> position;	// Cursor
+	private Position<E> removePosition;
 
 	public ElementIterator(PositionList<E> list) {
 		this.list = list;
@@ -24,6 +25,7 @@ public class ElementIterator<E> implements Iterator<E> {
 	@Override public E next() throws NoSuchElementException {
 		if (!hasNext())
 			throw new NoSuchElementException("No such position");
+		removePosition = position;
 		E element = position.getElement();
 		if (position == list.last()) {
 			position = null;
@@ -34,6 +36,8 @@ public class ElementIterator<E> implements Iterator<E> {
 	}
 
 	@Override public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Remove");
+		if (removePosition != null) {
+			list.remove(removePosition);
+		}
 	}
 }

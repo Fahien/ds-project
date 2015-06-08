@@ -4,33 +4,30 @@ import me.fahien.ds.util.position.Position;
 
 /** Graph Edge
  * @author Fahien */
-public class GraphEdge<E> extends GraphPosition<E> implements Edge<E> {
+public class GraphEdge<V, E> extends GraphPosition<E> implements Edge<E> {
 	private E element;
-	private Position<Edge<?>>[] incidentPositions;
+	private Position<Edge<E>>[] incidentPositions;
 	private Position<Edge<E>> position;
-	private GraphVertex<?>[] endVertices;
+	private GraphVertex<V, E>[] endVertices;
 
+	@SuppressWarnings("unchecked")
 	public GraphEdge(Vertex<?> u, Vertex<?> v, E element) {
 		this.element = element;
 		endVertices = new GraphVertex[2];
-		endVertices[0] = (GraphVertex<?>) u;
-		endVertices[1] = (GraphVertex<?>) v;
-		incidentPositions = (Position<Edge<?>>[]) new Position[2];
+		endVertices[0] = (GraphVertex<V, E>) u;
+		endVertices[1] = (GraphVertex<V, E>) v;
+		incidentPositions = (Position<Edge<E>>[]) new Position[2];
 	}
 
 	@Override public E getElement() {
 		return element;
 	}
 
-	public GraphVertex<?>[] getEndVertices() {
+	public GraphVertex<V, E>[] getEndVertices() {
 		return endVertices;
 	}
 
-	public Position<Edge<?>>[] getIncidentPositions() {
-		return incidentPositions;
-	}
-
-	public void setIncidences(Position<Edge<?>> e, Position<Edge<?>> f) {
+	public void setIncidences(Position<Edge<E>> e, Position<Edge<E>> f) {
 		incidentPositions[0] = e;
 		incidentPositions[1] = f;
 	}

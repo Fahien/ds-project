@@ -1,14 +1,16 @@
 package me.fahien.ds.util.position.graph;
 
+import java.util.Iterator;
+
 import me.fahien.ds.positionlist.NodePositionList;
 import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.position.Position;
 
 /** Graph vertex
  * @author Fahien */
-public class GraphVertex<V> extends GraphPosition<V> implements Vertex<V> {
+public class GraphVertex<V, E> extends GraphPosition<V> implements Vertex<V> {
 	private V element;
-	private PositionList<Edge<?>> incidentEdges;
+	private PositionList<Edge<E>> incidentEdges;
 	private Position<Vertex<V>> position;
 
 	public GraphVertex(V element) {
@@ -28,17 +30,23 @@ public class GraphVertex<V> extends GraphPosition<V> implements Vertex<V> {
 		return incidentEdges.size();
 	}
 
-	public Iterable<Edge<?>> getIncidentEdges() {
+	public Iterable<Edge<E>> getIncidentEdges() {
 		return incidentEdges;
 	}
 
-	public Position<Edge<?>> insertIncidence(Edge<?> edge) {
+	public Position<Edge<E>> insertIncidence(Edge<E> edge) {
 		incidentEdges.addLast(edge);
 		return incidentEdges.last();
 	}
 
-	public void removeIncidence(Position<Edge<?>> position) {
-		incidentEdges.remove(position);
+	public void removeIncidence(Edge<E> edge) {
+		Iterator<Edge<E>> iter = incidentEdges.iterator();
+		while (iter.hasNext()) {
+			Edge<?> e = iter.next();
+			if (e.equals(edge)) {
+				iter.remove();
+			}
+		}
 	}
 
 	public Position<Vertex<V>> getPosition() {
