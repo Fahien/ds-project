@@ -1,0 +1,25 @@
+apply plugin: "java"
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useTestNG()
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+}
+
+dependencies {
+    testCompile 'org.testng:testng:6.9.4'
+}
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'DS-Project',
+                   'Implementation-Version': version
+    }
+}
