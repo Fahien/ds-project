@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 import me.fahien.ds.exception.EmptyPriorityQueueException;
 import me.fahien.ds.exception.InvalidKeyException;
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.composition.Entry;
 import me.fahien.ds.util.composition.PQEntry;
 import me.fahien.ds.util.position.Position;
@@ -63,12 +63,5 @@ public class SortedListPriorityQueue<Key, Value> extends AbstractPriorityQueue<K
 		if (entries.isEmpty())
 			throw new EmptyPriorityQueueException("The priority queue is empty");
 		return entries.remove(entries.first());
-	}
-
-	public void delete() {
-		if (!isEmpty()) {
-			removeMin();
-			delete();
-		}
 	}
 }

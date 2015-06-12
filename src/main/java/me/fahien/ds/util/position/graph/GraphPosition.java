@@ -1,10 +1,10 @@
 package me.fahien.ds.util.position.graph;
 
-import me.fahien.ds.map.hashmap.ChainHashMap;
+import me.fahien.ds.map.HashTableMap;
 
 /** Graph position
  * @author Fahien */
-public class GraphPosition<E> extends ChainHashMap<Object, Object> implements DecorablePosition<E> {
+public class GraphPosition<E> extends HashTableMap<Object, Object> implements DecorablePosition<E> {
 	private E element;
 
 	@Override public E getElement() {

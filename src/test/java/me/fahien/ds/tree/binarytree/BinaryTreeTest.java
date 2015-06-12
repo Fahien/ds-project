@@ -4,11 +4,13 @@ import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
 
+import me.fahien.ds.binarytree.BinaryTree;
+import me.fahien.ds.binarytree.LinkedBinaryTree;
+import me.fahien.ds.binarytree.VectorBinaryTree;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.NonEmptyTreeException;
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
-
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 

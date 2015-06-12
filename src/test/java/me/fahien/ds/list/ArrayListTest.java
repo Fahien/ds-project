@@ -4,8 +4,9 @@ import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
 
+import me.fahien.ds.arraylist.ArrayIndexList;
+import me.fahien.ds.arraylist.IndexList;
 import me.fahien.ds.exception.EmptyListException;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
@@ -15,7 +16,7 @@ public class ArrayListTest {
 	private static final Logger logger = Logger.getLogger(ArrayListTest.class.getName());
 
 	@Test public void listOperations() {
-		List<Integer> list = new ArrayList<>();
+		IndexList<Integer> list = new ArrayIndexList<>();
 		list.add(0, 3);
 		list.set(0, 4);
 		try {

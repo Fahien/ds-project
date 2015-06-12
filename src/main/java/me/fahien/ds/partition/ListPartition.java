@@ -1,9 +1,9 @@
 package me.fahien.ds.partition;
 
+import me.fahien.ds.map.HashTableMap;
 import me.fahien.ds.map.Map;
-import me.fahien.ds.map.hashmap.ChainHashMap;
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.set.OrderedListSet;
 import me.fahien.ds.set.Set;
 
@@ -11,7 +11,7 @@ import me.fahien.ds.set.Set;
  * @author Fahien */
 public class ListPartition<E> implements Partition<E> {
 	private PositionList<Set<E>> partition = new NodePositionList<>();
-	private Map<E, Set<E>> elements = new ChainHashMap<>();
+	private Map<E, Set<E>> elements = new HashTableMap<>();
 
 	@Override public int size() {
 		return partition.size();
@@ -30,8 +30,7 @@ public class ListPartition<E> implements Partition<E> {
 		return set;
 	}
 
-	@Override
-	public Set<E> union(Set<E> a, Set<E> b) {
+	@Override public Set<E> union(Set<E> a, Set<E> b) {
 		if (a.size() > b.size()) {
 			a.fastUnion(b);
 			partition.remove(b.getPosition());

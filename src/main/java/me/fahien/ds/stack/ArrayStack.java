@@ -67,18 +67,4 @@ public class ArrayStack<E> implements Stack<E> {
 		string += "]";
 		return string;
 	}
-
-	public void union(Stack<E> stack) {
-		Stack<E> temp = new ArrayStack<>();
-		while (!isEmpty()) temp.push(pop());
-		int stackSize = stack.size();
-		while (!stack.isEmpty()) temp.push(stack.pop());
-		E element;
-		for (int i = 0; i < stackSize; i++) {
-			element = temp.pop();
-			stack.push(element);
-			push(element);
-		}
-		while (!temp.isEmpty()) push(temp.pop());
-	}
 }

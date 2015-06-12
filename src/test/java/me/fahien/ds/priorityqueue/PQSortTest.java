@@ -2,9 +2,8 @@ package me.fahien.ds.priorityqueue;
 
 import org.testng.annotations.Test;
 
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
-
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import static org.testng.Assert.assertEquals;
 
 /** PQSort Test Case

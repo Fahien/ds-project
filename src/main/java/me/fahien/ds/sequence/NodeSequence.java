@@ -3,7 +3,7 @@ package me.fahien.ds.sequence;
 import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.positionlist.NodePositionList;
+import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.util.position.DLNode;
 import me.fahien.ds.util.position.Position;
 

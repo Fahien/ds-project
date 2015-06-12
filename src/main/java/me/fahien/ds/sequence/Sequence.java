@@ -1,13 +1,13 @@
 package me.fahien.ds.sequence;
 
+import me.fahien.ds.arraylist.IndexList;
 import me.fahien.ds.exception.EmptySequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
-import me.fahien.ds.list.List;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.Position;
 
-public interface Sequence<E> extends PositionList<E>, List<E> {
+public interface Sequence<E> extends PositionList<E>, IndexList<E> {
 	/** Returns the position of the entry at this index */
 	Position<E> atIndex(int index) throws IndexOutOfBoundsException;
 

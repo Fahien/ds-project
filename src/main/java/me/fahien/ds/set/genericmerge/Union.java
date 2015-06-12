@@ -2,7 +2,7 @@ package me.fahien.ds.set.genericmerge;
 
 import java.util.Comparator;
 
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.PositionList;
 
 /** Union
  * @author Fahien */

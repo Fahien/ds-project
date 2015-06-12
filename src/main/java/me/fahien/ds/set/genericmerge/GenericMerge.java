@@ -2,8 +2,8 @@ package me.fahien.ds.set.genericmerge;
 
 import java.util.Comparator;
 
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 
 /** Generic Merge
  * @author Fahien */

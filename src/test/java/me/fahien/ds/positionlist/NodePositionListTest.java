@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 import java.util.logging.Logger;
 
 import me.fahien.ds.exception.EmptyListException;
-
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 

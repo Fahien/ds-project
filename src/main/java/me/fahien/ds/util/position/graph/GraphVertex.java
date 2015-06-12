@@ -2,8 +2,8 @@ package me.fahien.ds.util.position.graph;
 
 import java.util.Iterator;
 
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.Position;
 
 /** Graph vertex

@@ -2,7 +2,9 @@ package me.fahien.ds.sequence;
 
 import java.util.Iterator;
 
-import me.fahien.ds.list.ArrayList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
+import me.fahien.ds.arraylist.ArrayIndexList;
 import me.fahien.ds.exception.BoundaryViolationException;
 import me.fahien.ds.exception.EmptyListException;
 import me.fahien.ds.exception.EmptySequenceException;
@@ -10,8 +12,6 @@ import me.fahien.ds.exception.FullSequenceException;
 import me.fahien.ds.exception.IndexOutOfBoundsException;
 import me.fahien.ds.exception.InvalidPositionException;
 import me.fahien.ds.iterator.ElementIterator;
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
 import me.fahien.ds.util.position.ArrayPosition;
 import me.fahien.ds.util.position.Position;
 
@@ -19,7 +19,7 @@ public class ArraySequence<E> implements Sequence<E> {
 	private static final int CAPACITY = 1024;
 
 	private int capacity;
-	private ArrayList<ArrayPosition<E>> array;
+	private ArrayIndexList<ArrayPosition<E>> array;
 
 	public ArraySequence() {
 		this(CAPACITY);
@@ -27,7 +27,7 @@ public class ArraySequence<E> implements Sequence<E> {
 
 	public ArraySequence(int capacity) {
 		this.capacity = capacity;
-		array = new ArrayList<>(capacity);
+		array = new ArrayIndexList<>(capacity);
 	}
 
 	/** Checks whether the given index is in range [0, n - 1] */

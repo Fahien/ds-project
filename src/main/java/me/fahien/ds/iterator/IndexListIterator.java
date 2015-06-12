@@ -3,13 +3,13 @@ package me.fahien.ds.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import me.fahien.ds.list.ArrayList;
+import me.fahien.ds.arraylist.ArrayIndexList;
 
 public class IndexListIterator<E> implements Iterator<E> {
-	private ArrayList<E> array;
+	private ArrayIndexList<E> array;
 	private int index;
 
-	public IndexListIterator(ArrayList<E> array) {
+	public IndexListIterator(ArrayIndexList<E> array) {
 		this.array = array;
 		index = 0;
 	}

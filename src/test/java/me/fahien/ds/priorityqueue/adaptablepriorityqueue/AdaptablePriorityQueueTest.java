@@ -2,8 +2,10 @@ package me.fahien.ds.priorityqueue.adaptablepriorityqueue;
 
 import org.testng.annotations.Test;
 
+import me.fahien.ds.adaptablepriorityqueue.AdaptablePriorityQueue;
+import me.fahien.ds.adaptablepriorityqueue.HeapAdaptablePriorityQueue;
+import me.fahien.ds.adaptablepriorityqueue.SortedListAdaptablePriorityQueue;
 import me.fahien.ds.util.comparator.DefaultComparator;
-
 import static org.testng.Assert.assertTrue;
 
 /** AdaptablePriorityQueue Test Case

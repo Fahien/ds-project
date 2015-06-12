@@ -3,8 +3,8 @@ package me.fahien.ds.set;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.set.genericmerge.GenericMerge;
 import me.fahien.ds.set.genericmerge.Intersect;
 import me.fahien.ds.set.genericmerge.Subtract;

@@ -2,8 +2,8 @@ package me.fahien.ds.priorityqueue;
 
 import java.util.Comparator;
 
-import me.fahien.ds.tree.binarytree.completebinarytree.ArrayListCompleteBinaryTree;
-import me.fahien.ds.tree.binarytree.completebinarytree.CompleteBinaryTree;
+import me.fahien.ds.tree.completebinarytree.ArrayListCompleteBinaryTree;
+import me.fahien.ds.tree.completebinarytree.CompleteBinaryTree;
 import me.fahien.ds.exception.EmptyPriorityQueueException;
 import me.fahien.ds.exception.EmptyTreeException;
 import me.fahien.ds.exception.InvalidKeyException;

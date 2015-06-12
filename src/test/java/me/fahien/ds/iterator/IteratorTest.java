@@ -4,12 +4,11 @@ import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
 
-import me.fahien.ds.list.ArrayList;
-import me.fahien.ds.list.List;
-import me.fahien.ds.positionlist.NodePositionList;
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.arraylist.ArrayIndexList;
+import me.fahien.ds.arraylist.IndexList;
+import me.fahien.ds.nodelist.NodePositionList;
+import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.Position;
-
 import static org.testng.Assert.assertEquals;
 
 /** Iterator Test Case
@@ -48,7 +47,7 @@ public class IteratorTest {
 	}
 
 	@Test public void arrayListIterator() {
-		List<Integer> list = new ArrayList<>();
+		IndexList<Integer> list = new ArrayIndexList<>();
 		for (int i = 0; i < 10; i++) {
 			list.add(i, i);
 		}

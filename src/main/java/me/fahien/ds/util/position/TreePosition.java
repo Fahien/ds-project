@@ -1,6 +1,6 @@
 package me.fahien.ds.util.position;
 
-import me.fahien.ds.positionlist.PositionList;
+import me.fahien.ds.nodelist.PositionList;
 
 public interface TreePosition<E> extends Position<E> {
 	/** Updates the element stored at this position */
