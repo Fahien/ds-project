@@ -70,7 +70,7 @@ public class LogFile<Key, Value> implements Dictionary<Key, Value> {
 		return null;
 	}
 
-	@Override public Iterable<Entry<Key, Value>> getEntries() {
+	@Override public Iterable<Entry<Key, Value>> entries() {
 		PositionList<Entry<Key, Value>> iterable = new NodePositionList<>();
 		if (!entries.isEmpty()) {
 			for (Position<Entry<Key, Value>> current = entries.first();;) {

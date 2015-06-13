@@ -1,4 +1,4 @@
-package me.fahien.ds.priorityqueue.adaptablepriorityqueue;
+package me.fahien.ds.adaptablepriorityqueue;
 
 import org.testng.annotations.Test;
 

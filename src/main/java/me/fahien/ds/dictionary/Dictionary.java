@@ -8,7 +8,7 @@ public interface Dictionary<Key, Value> {
 	/** Returns the number of entries in the dictionary */
 	int size();
 
-	/* Returns a boolean indicating whether the dictionary is empty */
+	/** Returns a boolean indicating whether the dictionary is empty */
 	boolean isEmpty();
 
 	/** Returns the entry with key equal to this one, if such an entry exists */
@@ -27,5 +27,5 @@ public interface Dictionary<Key, Value> {
 
 	/** Returns an iterable collection containing
 	 * all the key-value entries in the dictionary */
-	Iterable<Entry<Key, Value>> getEntries();
+	Iterable<Entry<Key, Value>> entries();
 }
