@@ -9,7 +9,7 @@ public interface Map<Key, Value> {
 	/** Returns the number of entries in the map */
 	int size();
 
-	/* Returns a boolean indicating whether the map is empty */
+	/** Returns a boolean indicating whether the map is empty */
 	boolean isEmpty();
 
 	/** If the map does not have an entry with key equal to this one,

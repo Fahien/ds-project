@@ -10,16 +10,13 @@ public interface Queue<E> {
 	boolean isEmpty ();
 
 	/** Returns, but does not remove, the first element of the queue
-	 * @throws EmptyQueueException whether the queue is empty
-	 * @return The first element */
+	 * @throws EmptyQueueException whether the queue is empty */
 	E front() throws EmptyQueueException;
 
-	/** Inserts an element at the rear of the queue.
-	 * @param element The element */
+	/** Inserts an element at the rear of the queue */
 	void enqueue(E element);
 
 	/** Removes and returns the first element of the queue
-	 * @throws EmptyQueueException whether the queue is empty
-	 * @return The first element */
+	 * @throws EmptyQueueException whether the queue is empty */
 	E dequeue() throws EmptyQueueException;
 }
