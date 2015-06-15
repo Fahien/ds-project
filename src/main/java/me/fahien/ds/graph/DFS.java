@@ -13,14 +13,14 @@ import me.fahien.ds.util.position.graph.Vertex;
  * @author Fahien */
 public class DFS {
 	/** Performs depth-first search of Graph g starting at Vertex u. */
-	public static <V,E> void depthFirstSearch(Graph<V,E> g, Vertex<V> u, Set<Vertex<V>> known, Map<Vertex<V>, Edge<E>> forest) {
+	public static <V,E> void execute(Graph<V,E> g, Vertex<V> u, Set<Vertex<V>> known, Map<Vertex<V>, Edge<E>> forest) {
 		known.add(u); // u has been discovered
 		// for every incident edge in u
 		for (Edge<E> e : g.incidentEdges(u)) { 
 			Vertex<V> v = g.opposite(u, e);
 			if (!known.contains(v)) {
 				forest.put(v, e); // e is the tree edge that discovered v
-				depthFirstSearch(g, v, known, forest); // recursively explore from v
+				execute(g, v, known, forest); // recursively explore from v
 			}
 		}
 	}

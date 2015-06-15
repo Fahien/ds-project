@@ -10,9 +10,10 @@ import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.graph.Edge;
 import me.fahien.ds.util.position.graph.Vertex;
 
+/** Template method that returns an ordered list of edges comprising a cycle from root 
+ * @author Fahien */
 public class FindCycleDFS extends DFS {
-	/** Returns an ordered list of edges comprising a cycle from root */
-	public static <V, E> PositionList<Edge<E>> findCycle(Graph<V, E> graph, Vertex<V> root) {
+	public static <V, E> PositionList<Edge<E>> execute(Graph<V, E> graph, Vertex<V> root) {
 		PositionList<Edge<E>> cycle = new NodePositionList<>();
 		Set<Vertex<V>> known = new HashSet<>();
 		known.add(root);
@@ -24,7 +25,7 @@ public class FindCycleDFS extends DFS {
 		while (!children.isEmpty()) {
 			Vertex<V> firstChild = children.remove(children.first());
 			for(Vertex<V> lastChild : children) {
-				depthFirstSearch(graph, firstChild, known, forest);
+				execute(graph, firstChild, known, forest);
 				if (forest.get(lastChild) != null) {
 					Vertex<V> current = lastChild;
 					while (current != firstChild) {

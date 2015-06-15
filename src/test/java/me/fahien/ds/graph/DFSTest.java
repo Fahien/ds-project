@@ -18,31 +18,31 @@ public class DFSTest {
 
 	@Test public void dfsTest() {
 		Graph<Integer, Character> graph = new AdjacencyListGraph<>();
-		assertEquals(ComponentsDFS.connectedComponents(graph), 0);
+		assertEquals(ComponentsDFS.execute(graph), 0);
 		
 		Vertex<Integer> one = new GraphVertex<Integer, Character>(1);
 		Vertex<Integer> two = new GraphVertex<Integer, Character>(2);
 
-		assertEquals(ComponentsDFS.connectedComponents(graph), 0);
-		assertTrue(FindPathDFS.findPath(graph, one, two).isEmpty());
-		assertTrue(FindCycleDFS.findCycle(graph, one).isEmpty());
+		assertEquals(ComponentsDFS.execute(graph), 0);
+		assertTrue(FindPathDFS.execute(graph, one, two).isEmpty());
+		assertTrue(FindCycleDFS.execute(graph, one).isEmpty());
 
 		one = graph.insertVertex(1);
 		two = graph.insertVertex(2);
-		assertEquals(ComponentsDFS.connectedComponents(graph), 2);
-		assertTrue(FindPathDFS.findPath(graph, one, two).isEmpty());
-		assertTrue(FindCycleDFS.findCycle(graph, one).isEmpty());
+		assertEquals(ComponentsDFS.execute(graph), 2);
+		assertTrue(FindPathDFS.execute(graph, one, two).isEmpty());
+		assertTrue(FindCycleDFS.execute(graph, one).isEmpty());
 
 		graph.insertEdge(one, two, 'a');
-		assertEquals(ComponentsDFS.connectedComponents(graph), 1);
-		assertFalse(FindPathDFS.findPath(graph, one, two).isEmpty());
-		assertTrue(FindCycleDFS.findCycle(graph, one).isEmpty());
+		assertEquals(ComponentsDFS.execute(graph), 1);
+		assertFalse(FindPathDFS.execute(graph, one, two).isEmpty());
+		assertTrue(FindCycleDFS.execute(graph, one).isEmpty());
 		
 		Vertex<Integer> three = graph.insertVertex(3);
 		graph.insertEdge(two, three, 'b');
-		assertTrue(FindCycleDFS.findCycle(graph, one).isEmpty());
+		assertTrue(FindCycleDFS.execute(graph, one).isEmpty());
 		graph.insertEdge(three, one, 'c');
-		PositionList<Edge<Character>> cycle = FindCycleDFS.findCycle(graph, one);
+		PositionList<Edge<Character>> cycle = FindCycleDFS.execute(graph, one);
 		assertFalse(cycle.isEmpty());
 		String cycleString = "";
 		for (Edge<Character> edge : cycle) {

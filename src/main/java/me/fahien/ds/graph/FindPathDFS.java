@@ -10,13 +10,15 @@ import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.util.position.graph.Edge;
 import me.fahien.ds.util.position.graph.Vertex;
 
+/** Template method that returns an ordered list of edges
+ * comprising the directed path from startVertex to endVertex
+ * @author Fahien */
 public class FindPathDFS extends DFS {
-	/** Returns an ordered list of edges comprising the directed path from startVertex to endVertex */
-	public static <V, E> PositionList<Edge<E>> findPath(
+	public static <V, E> PositionList<Edge<E>> execute(
 			Graph<V, E> graph, Vertex<V> startVertex, Vertex<V> endVertex) {
 		Set<Vertex<V>> known = new HashSet<>();
 		Map<Vertex<V>, Edge<E>> forest = new HashTableMap<>();
-		depthFirstSearch(graph, startVertex, known, forest);
+		execute(graph, startVertex, known, forest);
 		PositionList<Edge<E>> path = new NodePositionList<>();
 		if (forest.get(endVertex) != null) {
 			Vertex<V> current = endVertex;
