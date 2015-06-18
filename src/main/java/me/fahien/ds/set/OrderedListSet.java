@@ -56,7 +56,7 @@ public class OrderedListSet<E> implements Set<E> {
 		try {
 			temp = union.genericMerge(list.clone(), ((OrderedListSet<E>)set).list.clone());
 		} catch (ClassCastException e) {
-			throw new ClassCastException("The set is not the same type");
+			throw new ClassCastException("The set is not the same type: " + e.getMessage());
 		}
 		return new OrderedListSet<>(temp);
 	}
