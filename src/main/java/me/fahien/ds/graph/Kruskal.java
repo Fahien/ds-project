@@ -5,7 +5,6 @@ import me.fahien.ds.map.Map;
 import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.partition.ListPartition;
-import me.fahien.ds.partition.Partition;
 import me.fahien.ds.priorityqueue.HeapPriorityQueue;
 import me.fahien.ds.priorityqueue.PriorityQueue;
 import me.fahien.ds.set.Set;
@@ -25,12 +24,12 @@ public class Kruskal {
 		// pq entries are edges of graph, with weights as keys
 		PriorityQueue<Integer, Edge<Integer>> pq = new HeapPriorityQueue<>();
 		// union-find forest of components of the graph
-		Partition<Vertex<V>> forest = new ListPartition<>();
+		ListPartition<Vertex<V>> forest = new ListPartition<>();
 		// map each vertex to the forest position
 		Map<Vertex<V>, Set<Vertex<V>>> positions = new HashTableMap<>();
 		
 		for (Vertex<V> v : graph.vertices()) {
-			positions.put(v, forest.makeSet(v));
+			positions.put(v, forest.makeGroup(v));
 		}
 		for (Edge<Integer> e : graph.edges()) {
 			pq.insert(e.getElement(), e);

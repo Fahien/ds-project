@@ -6,6 +6,7 @@ import me.fahien.ds.nodelist.NodePositionList;
 import me.fahien.ds.nodelist.PositionList;
 import me.fahien.ds.set.OrderedListSet;
 import me.fahien.ds.set.Set;
+import me.fahien.ds.util.comparator.IdentityComparator;
 
 /** ListPartition
  * @author Fahien */
@@ -23,6 +24,15 @@ public class ListPartition<E> implements Partition<E> {
 
 	@Override public Set<E> makeSet(E element) {
 		Set<E> set = new OrderedListSet<>();
+		set.fastInsert(element);
+		partition.addLast(set);
+		set.setPosition(partition.last());
+		elements.put(element, set);
+		return set;
+	}
+
+	public Set<E> makeGroup(E element) {
+		Set<E> set = new OrderedListSet<>(new IdentityComparator<>());
 		set.fastInsert(element);
 		partition.addLast(set);
 		set.setPosition(partition.last());

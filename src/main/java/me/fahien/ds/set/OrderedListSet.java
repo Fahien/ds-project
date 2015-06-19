@@ -30,6 +30,10 @@ public class OrderedListSet<E> implements Set<E> {
 		this.list = list;
 	}
 
+	public OrderedListSet(Comparator<E> comparator) {
+		this.comparator = comparator;
+	}
+
 	public Position<E> first() {
 		return list.first();
 	}

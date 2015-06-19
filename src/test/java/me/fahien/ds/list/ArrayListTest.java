@@ -1,8 +1,9 @@
 package me.fahien.ds.list;
 
-import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
+
+import org.testng.annotations.Test;
 
 import me.fahien.ds.arraylist.ArrayIndexList;
 import me.fahien.ds.arraylist.IndexList;
@@ -40,6 +41,9 @@ public class ArrayListTest {
 			assertEquals(new Integer(2), list.remove(0) );
 			assertEquals(new Integer(1), list.remove(0) );
 			logger.info(list.toString());
+			for (int i = 0; i < list.size(); i++) {
+				logger.info(list.get(i) + " ");
+			}
 		} catch (EmptyListException e) {
 			logger.warning(e.getMessage());
 		}

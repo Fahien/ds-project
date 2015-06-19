@@ -1,4 +1,4 @@
-package me.fahien.ds.tree.completebinarytree;
+package me.fahien.ds.completebinarytree;
 
 import me.fahien.ds.binarytree.BinaryTree;
 import me.fahien.ds.exception.EmptyTreeException;
